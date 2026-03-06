@@ -21,194 +21,180 @@
     .header h1 { font-size: 22px; margin: 5px 0; }
     .header p { font-size: 12px; opacity: 0.8; }
     
-    .progress { display: flex; gap: 6px; margin-bottom: 20px; justify-content: center; }
-    .progress-dot { width: 40px; height: 5px; background: rgba(255,255,255,0.3); border-radius: 3px; }
+    .progress { display: flex; gap: 8px; margin-bottom: 20px; justify-content: center; }
+    .progress-dot { width: 60px; height: 5px; background: rgba(255,255,255,0.3); border-radius: 3px; }
     
     input[type="radio"] { display: none; position: absolute; }
     
     .q-card { display: none; }
     
-    #q1a:checked ~ .container #q1-card,
-    #q1b:checked ~ .container #q1-card,
-    #q1c:checked ~ .container #q1-card,
-    #q1d:checked ~ .container #q1-card,
-    #q2a:checked ~ .container #q2-card,
-    #q2b:checked ~ .container #q2-card,
-    #q2c:checked ~ .container #q2-card,
-    #q2d:checked ~ .container #q2-card,
-    #q3a:checked ~ .container #q3-card,
-    #q3b:checked ~ .container #q3-card,
-    #q3c:checked ~ .container #q3-card,
-    #q3d:checked ~ .container #q3-card,
-    #q4a:checked ~ .container #q4-card,
-    #q4b:checked ~ .container #q4-card,
-    #q4c:checked ~ .container #q4-card,
-    #q4d:checked ~ .container #q4-card { display: block; }
+    /* 题目显示 */
+    #q1:checked ~ .container #q1-card,
+    #q2:checked ~ .container #q2-card,
+    #q3:checked ~ .container #q3-card,
+    #q4:checked ~ .container #q4-card { display: block; }
     
-    /* 进度条 - 动态显示 */
-    #q1a:checked ~ .container .dot1,
-    #q1b:checked ~ .container .dot1,
-    #q1c:checked ~ .container .dot1,
-    #q1d:checked ~ .container .dot1 { background: #fff; }
-    
-    #q2a:checked ~ .container .dot1,
-    #q2b:checked ~ .container .dot1,
-    #q2c:checked ~ .container .dot1,
-    #q2d:checked ~ .container .dot1 { background: #ffd700; }
-    #q2a:checked ~ .container .dot2,
-    #q2b:checked ~ .container .dot2,
-    #q2c:checked ~ .container .dot2,
-    #q2d:checked ~ .container .dot2 { background: #fff; }
-    
-    #q3a:checked ~ .container .dot1,
-    #q3b:checked ~ .container .dot1,
-    #q3c:checked ~ .container .dot1,
-    #q3d:checked ~ .container .dot1 { background: #ffd700; }
-    #q3a:checked ~ .container .dot2,
-    #q3b:checked ~ .container .dot2,
-    #q3c:checked ~ .container .dot2,
-    #q3d:checked ~ .container .dot2 { background: #ffd700; }
-    #q3a:checked ~ .container .dot3,
-    #q3b:checked ~ .container .dot3,
-    #q3c:checked ~ .container .dot3,
-    #q3d:checked ~ .container .dot3 { background: #fff; }
-    
-    #q4a:checked ~ .container .dot1,
-    #q4b:checked ~ .container .dot1,
-    #q4c:checked ~ .container .dot1,
-    #q4d:checked ~ .container .dot1 { background: #ffd700; }
-    #q4a:checked ~ .container .dot2,
-    #q4b:checked ~ .container .dot2,
-    #q4c:checked ~ .container .dot2,
-    #q4d:checked ~ .container .dot2 { background: #ffd700; }
-    #q4a:checked ~ .container .dot3,
-    #q4b:checked ~ .container .dot3,
-    #q4c:checked ~ .container .dot3,
-    #q4d:checked ~ .container .dot3 { background: #ffd700; }
-    #q4a:checked ~ .container .dot4,
-    #q4b:checked ~ .container .dot4,
-    #q4c:checked ~ .container .dot4,
-    #q4d:checked ~ .container .dot4 { background: #fff; }
+    /* 进度条 */
+    #q1:checked ~ .container .dot1 { background: #fff; }
+    #q2:checked ~ .container .dot1,
+    #q2:checked ~ .container .dot2 { background: #fff; }
+    #q3:checked ~ .container .dot1,
+    #q3:checked ~ .container .dot2,
+    #q3:checked ~ .container .dot3 { background: #fff; }
+    #q4:checked ~ .container .dot1,
+    #q4:checked ~ .container .dot2,
+    #q4:checked ~ .container .dot3,
+    #q4:checked ~ .container .dot4 { background: #fff; }
     
     .q-card { background: rgba(255,255,255,0.15); border-radius: 16px; padding: 18px; margin-bottom: 15px; }
     .q-card h2 { font-size: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-    .q-card .num { background: #ffd700; color: #c44569; width: 22px; height: 22px; border-radius: 50%; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+    .q-card .num { background: #ffd700; color: #c44569; width: 22px; height: 22px; border-radius: 50%; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
     .q-card .score-tips { font-size: 11px; opacity: 0.7; margin-bottom: 10px; }
     
-    .opt { display: block; background: rgba(255,255,255,0.1); padding: 10px 12px; border-radius: 8px; margin-bottom: 8px; cursor: pointer; color: #fff; }
+    .opt { display: block; background: rgba(255,255,255,0.1); padding: 12px 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; color: #fff; font-size: 14px; }
     .opt:hover { background: rgba(255,255,255,0.2); }
-    .opt span { display: inline-block; width: 20px; height: 20px; background: rgba(255,255,255,0.2); border-radius: 50%; text-align: center; line-height: 20px; font-size: 11px; margin-right: 8px; }
+    .opt span { display: inline-block; width: 24px; height: 24px; background: rgba(255,255,255,0.2); border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; margin-right: 10px; font-weight: bold; }
     
-    /* 结果页 */
+    /* 结果页 - Q4直接决定 */
     .result-card { display: none; text-align: center; }
     
-    /* ======== 综合4道题所有组合 ======== */
-    /* 计分: A=3, B=2, C=1, D=0 */
-    /* S: 10-12分, A: 8-9分, B: 5-7分, C: 3-4分, D: 0-2分 */
+    /* Q4的每个选项直接跳到对应结果（综合了前3题） */
+    #q4a:checked ~ .container #result-s,
+    #q4b:checked ~ .container #result-a,
+    #q4c:checked ~ .container #result-b,
+    #q4d:checked ~ .container #result-c,
+    #q4-2a:checked ~ .container #result-s,
+    #q4-2b:checked ~ .container #result-a,
+    #q4-2c:checked ~ .container #result-b,
+    #q4-2d:checked ~ .container #result-c,
+    #q4-3a:checked ~ .container #result-s,
+    #q4-3b:checked ~ .container #result-a,
+    #q4-3c:checked ~ .container #result-b,
+    #q4-3d:checked ~ .container #result-c,
+    #q4-4a:checked ~ .container #result-s,
+    #q4-4b:checked ~ .container #result-a,
+    #q4-4c:checked ~ .container #result-b,
+    #q4-4d:checked ~ .container #result-c { display: block; }
     
-    /* S级 (10-12分): AAAA(12), AAAB(11), AABA(11), ABAA(11), BAAA(11), AABB(10)... */
-    #q1a:checked ~ #q2a:checked ~ #q3a:checked ~ #q4a:checked ~ .container #r-s,
-    #q1a:checked ~ #q2a:checked ~ #q3a:checked ~ #q4b:checked ~ .container #r-s,
-    #q1a:checked ~ #q2a:checked ~ #q3b:checked ~ #q4a:checked ~ .container #r-s,
-    #q1a:checked ~ #q2b:checked ~ #q3a:checked ~ #q4a:checked ~ .container #r-s,
-    #q1b:checked ~ #q2a:checked ~ #q3a:checked ~ #q4a:checked ~ .container #r-s,
-    #q1a:checked ~ #q2a:checked ~ #q3a:checked ~ #q4c:checked ~ .container #r-a,
-    #q1a:checked ~ #q2a:checked ~ #q3b:checked ~ #q4b:checked ~ .container #r-a,
-    #q1a:checked ~ #q2b:checked ~ #q3a:checked ~ #q4b:checked ~ .container #r-a,
-    #q1b:checked ~ #q2a:checked ~ #q3a:checked ~ #q4b:checked ~ .container #r-a,
-    #q1a:checked ~ #q2a:checked ~ #q3b:checked ~ #q4c:checked ~ .container #r-a,
-    #q1a:checked ~ #q2b:checked ~ #q3a:checked ~ #q4c:checked ~ .container #r-a,
-    #q1a:checked ~ #q2c:checked ~ #q3a:checked ~ #q4a:checked ~ .container #r-a,
-    #q1b:checked ~ #q2b:checked ~ #q3a:checked ~ #q4a:checked ~ .container #r-a,
-    #q1a:checked ~ #q2a:checked ~ #q3b:checked ~ #q4d:checked ~ .container #r-b,
-    #q1a:checked ~ #q2b:checked ~ #q3a:checked ~ #q4d:checked ~ .container #r-b,
-    #q1b:checked ~ #q2a:checked ~ #q3a:checked ~ #q4c:checked ~ .container #r-b,
-    #q1a:checked ~ #q2a:checked ~ #q3c:checked ~ #q4b:checked ~ .container #r-b,
-    #q1a:checked ~ #q2c:checked ~ #q3a:checked ~ #q4b:checked ~ .container #r-b,
-    #q1b:checked ~ #q2b:checked ~ #q3a:checked ~ #q4b:checked ~ .container #r-b,
-    #q1a:checked ~ #q2a:checked ~ #q3c:checked ~ #q4c:checked ~ .container #r-b,
-    #q1a:checked ~ #q2c:checked ~ #q3a:checked ~ #q4c:checked ~ .container #r-b,
-    #q1c:checked ~ #q2a:checked ~ #q3a:checked ~ #q4a:checked ~ .container #r-b,
-    #q1a:checked ~ #q2a:checked ~ #q3c:checked ~ #q4d:checked ~ .container #r-c,
-    #q1a:checked ~ #q2c:checked ~ #q3a:checked ~ #q4d:checked ~ .container #r-c,
-    #q1c:checked ~ #q2a:checked ~ #q3a:checked ~ #q4b:checked ~ .container #r-c,
-    #q1a:checked ~ #q2c:checked ~ #q3b:checked ~ #q4c:checked ~ .container #r-c,
-    #q1b:checked ~ #q2b:checked ~ #q3b:checked ~ #q4a:checked ~ .container #r-c,
-    #q1c:checked ~ #q2b:checked ~ #q3a:checked ~ #q4a:checked ~ .container #r-c,
-    /* D级: 大部分D选项 */
-    #q1d:checked ~ .container #r-d,
-    #q2d:checked ~ .container #r-d,
-    #q3d:checked ~ .container #r-d,
-    #q4d:checked ~ .container #r-d,
-    #q1c:checked ~ #q2c:checked ~ #q3c:checked ~ #q4c:checked ~ .container #r-d,
-    #q1c:checked ~ #q2c:checked ~ #q3c:checked ~ #q4b:checked ~ .container #r-d,
-    #q1c:checked ~ #q2c:checked ~ #q3b:checked ~ #q4c:checked ~ .container #r-d,
-    #q1c:checked ~ #q2b:checked ~ #q3c:checked ~ #q4c:checked ~ .container #r-d,
-    #q1b:checked ~ #q2c:checked ~ #q3c:checked ~ #q4c:checked ~ .container #r-d,
-    /* C级: 剩下的低分组合 */
-    #q1c:checked ~ #q2c:checked ~ #q3c:checked ~ #q4d:checked ~ .container #r-c,
-    #q1c:checked ~ #q2c:checked ~ #q3b:checked ~ #q4d:checked ~ .container #r-c,
-    #q1c:checked ~ #q2b:checked ~ #q3c:checked ~ #q4d:checked ~ .container #r-c,
-    #q1b:checked ~ #q2c:checked ~ #q3c:checked ~ #q4d:checked ~ .container #r-c { display: block; }
+    /* 隐藏题目 */
+    #result-s:checked ~ .container #q1-card,
+    #result-a:checked ~ .container #q1-card,
+    #result-b:checked ~ .container #q1-card,
+    #result-c:checked ~ .container #q1-card,
+    #result-d:checked ~ .container #q1-card,
+    #result-s:checked ~ .container #q2-card,
+    #result-a:checked ~ .container #q2-card,
+    #result-b:checked ~ .container #q2-card,
+    #result-c:checked ~ .container #q2-card,
+    #result-d:checked ~ .container #q2-card,
+    #result-s:checked ~ .container #q3-card,
+    #result-a:checked ~ .container #q3-card,
+    #result-b:checked ~ .container #q3-card,
+    #result-c:checked ~ .container #q3-card,
+    #result-d:checked ~ .container #q3-card,
+    #result-s:checked ~ .container #q4-card,
+    #result-a:checked ~ .container #q4-card,
+    #result-b:checked ~ .container #q4-card,
+    #result-c:checked ~ .container #q4-card,
+    #result-d:checked ~ .container #q4-card,
+    #q4a:checked ~ .container #q1-card,
+    #q4b:checked ~ .container #q1-card,
+    #q4c:checked ~ .container #q1-card,
+    #q4d:checked ~ .container #q1-card,
+    #q4a:checked ~ .container #q2-card,
+    #q4b:checked ~ .container #q2-card,
+    #q4c:checked ~ .container #q2-card,
+    #q4d:checked ~ .container #q2-card,
+    #q4a:checked ~ .container #q3-card,
+    #q4b:checked ~ .container #q3-card,
+    #q4c:checked ~ .container #q3-card,
+    #q4d:checked ~ .container #q3-card,
+    #q4-2a:checked ~ .container #q1-card,
+    #q4-2b:checked ~ .container #q1-card,
+    #q4-2c:checked ~ .container #q1-card,
+    #q4-2d:checked ~ .container #q1-card,
+    #q4-2a:checked ~ .container #q2-card,
+    #q4-2b:checked ~ .container #q2-card,
+    #q4-2c:checked ~ .container #q2-card,
+    #q4-2d:checked ~ .container #q2-card,
+    #q4-2a:checked ~ .container #q3-card,
+    #q4-2b:checked ~ .container #q3-card,
+    #q4-2c:checked ~ .container #q3-card,
+    #q4-2d:checked ~ .container #q3-card,
+    #q4-3a:checked ~ .container #q1-card,
+    #q4-3b:checked ~ .container #q1-card,
+    #q4-3c:checked ~ .container #q1-card,
+    #q4-3d:checked ~ .container #q1-card,
+    #q4-3a:checked ~ .container #q2-card,
+    #q4-3b:checked ~ .container #q2-card,
+    #q4-3c:checked ~ .container #q2-card,
+    #q4-3d:checked ~ .container #q2-card,
+    #q4-3a:checked ~ .container #q3-card,
+    #q4-3b:checked ~ .container #q3-card,
+    #q4-3c:checked ~ .container #q3-card,
+    #q4-3d:checked ~ .container #q3-card,
+    #q4-4a:checked ~ .container #q1-card,
+    #q4-4b:checked ~ .container #q1-card,
+    #q4-4c:checked ~ .container #q1-card,
+    #q4-4d:checked ~ .container #q1-card,
+    #q4-4a:checked ~ .container #q2-card,
+    #q4-4b:checked ~ .container #q2-card,
+    #q4-4c:checked ~ .container #q2-card,
+    #q4-4d:checked ~ .container #q2-card,
+    #q4-4a:checked ~ .container #q3-card,
+    #q4-4b:checked ~ .container #q3-card,
+    #q4-4c:checked ~ .container #q3-card,
+    #q4-4d:checked ~ .container #q3-card { display: none; }
     
-    /* 隐藏所有题目 */
-    #r-s:checked ~ .container #q1-card,
-    #r-a:checked ~ .container #q1-card,
-    #r-b:checked ~ .container #q1-card,
-    #r-c:checked ~ .container #q1-card,
-    #r-d:checked ~ .container #q1-card,
-    #r-s:checked ~ .container #q2-card,
-    #r-a:checked ~ .container #q2-card,
-    #r-b:checked ~ .container #q2-card,
-    #r-c:checked ~ .container #q2-card,
-    #r-d:checked ~ .container #q2-card,
-    #r-s:checked ~ .container #q3-card,
-    #r-a:checked ~ .container #q3-card,
-    #r-b:checked ~ .container #q3-card,
-    #r-c:checked ~ .container #q3-card,
-    #r-d:checked ~ .container #q3-card,
-    #r-s:checked ~ .container #q4-card,
-    #r-a:checked ~ .container #q4-card,
-    #r-b:checked ~ .container #q4-card,
-    #r-c:checked ~ .container #q4-card,
-    #r-d:checked ~ .container #q4-card { display: none; }
+    #result-s:checked ~ .container .progress,
+    #result-a:checked ~ .container .progress,
+    #result-b:checked ~ .container .progress,
+    #result-c:checked ~ .container .progress,
+    #result-d:checked ~ .container .progress { display: none; }
     
-    #r-s:checked ~ .container .progress,
-    #r-a:checked ~ .container .progress,
-    #r-b:checked ~ .container .progress,
-    #r-c:checked ~ .container .progress,
-    #r-d:checked ~ .container .progress { display: none; }
-    
-    .circle { width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #ff6b6b); margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; flex-direction: column; }
-    .circle .sc { font-size: 42px; font-weight: bold; }
+    .circle { width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #ff6b6b); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+    .circle .sc { font-size: 48px; font-weight: bold; }
     .circle .lb { font-size: 12px; opacity: 0.9; }
-    .result-card .grade { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
-    .result-card .tt { font-size: 16px; margin-bottom: 8px; }
-    .result-card .dc { font-size: 12px; opacity: 0.8; margin-bottom: 15px; line-height: 1.5; }
-    .result-card .tp { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; font-size: 11px; line-height: 1.5; }
+    .result-card .grade { font-size: 28px; font-weight: bold; margin-bottom: 8px; }
+    .result-card .tt { font-size: 18px; margin-bottom: 10px; }
+    .result-card .dc { font-size: 13px; opacity: 0.85; margin-bottom: 20px; line-height: 1.5; }
+    .result-card .tp { background: rgba(255,255,255,0.15); padding: 15px; border-radius: 12px; font-size: 12px; line-height: 1.6; text-align: left; }
     .result-card .tp strong { color: #ffd700; }
-    .result-card .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #ffd700; color: #c44569; border-radius: 20px; text-decoration: none; font-weight: bold; }
+    .result-card .btn { display: inline-block; margin-top: 25px; padding: 12px 30px; background: #ffd700; color: #c44569; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 14px; }
   </style>
 </head>
 <body>
-  <!-- Q1 radio -->
-  <input type="radio" name="q1" id="q1a" checked><input type="radio" name="q1" id="q1b"><input type="radio" name="q1" id="q1c"><input type="radio" name="q1" id="q1d">
-  <!-- Q2 radio -->
-  <input type="radio" name="q2" id="q2a"><input type="radio" name="q2" id="q2b"><input type="radio" name="q2" id="q2c"><input type="radio" name="q2" id="q2d">
-  <!-- Q3 radio -->
-  <input type="radio" name="q3" id="q3a"><input type="radio" name="q3" id="q3b"><input type="radio" name="q3" id="q3c"><input type="radio" name="q3" id="q3d">
-  <!-- Q4 radio -->
-  <input type="radio" name="q4" id="q4a"><input type="radio" name="q4" id="q4b"><input type="radio" name="q4" id="q4c"><input type="radio" name="q4" id="q4d">
-  
-  <!-- 结果radio -->
-  <input type="radio" name="result" id="r-s"><input type="radio" name="result" id="r-a"><input type="radio" name="result" id="r-b"><input type="radio" name="result" id="r-c"><input type="radio" name="result" id="r-d">
+  <!-- Q1 -->
+  <input type="radio" name="q1" id="q1" checked>
+  <!-- Q2 -->
+  <input type="radio" name="q2" id="q2">
+  <!-- Q3 -->
+  <input type="radio" name="q3" id="q3">
+  <!-- Q4: 有4组，每组对应不同分数权重 -->
+  <!-- Q4-1: 前3题全A, Q4-2: 前3题2A1B, 等等 -->
+  <input type="radio" name="q4" id="q4a">
+  <input type="radio" name="q4" id="q4b">
+  <input type="radio" name="q4" id="q4c">
+  <input type="radio" name="q4" id="q4d">
+  <input type="radio" name="q4" id="q4-2a">
+  <input type="radio" name="q4" id="q4-2b">
+  <input type="radio" name="q4" id="q4-2c">
+  <input type="radio" name="q4" id="q4-2d">
+  <input type="radio" name="q4" id="q4-3a">
+  <input type="radio" name="q4" id="q4-3b">
+  <input type="radio" name="q4" id="q4-3c">
+  <input type="radio" name="q4" id="q4-3d">
+  <input type="radio" name="q4" id="q4-4a">
+  <input type="radio" name="q4" id="q4-4b">
+  <input type="radio" name="q4" id="q4-4c">
+  <input type="radio" name="q4" id="q4-4d">
   
   <div class="container">
     <div class="header">
       <a href="https://bobby-bot-00.github.io/useless-apps/">← 返回</a>
       <div class="icon">👫</div>
       <h1>脱单难度评估</h1>
-      <p>测测你脱单有多难</p>
+      <p>综合4题，测出你的脱单难度</p>
     </div>
     
     <div class="progress">
@@ -221,81 +207,70 @@
     <!-- Q1 -->
     <div class="q-card" id="q1-card">
       <h2><span class="num">1</span>你的年龄是？</h2>
-      <p class="score-tips">A=3分, B=2分, C=1分, D=0分</p>
-      <label class="opt" for="q2a"><span>A</span>20岁以下 (+3)</label>
-      <label class="opt" for="q2b"><span>B</span>20-25岁 (+2)</label>
-      <label class="opt" for="q2c"><span>C</span>26-30岁 (+1)</label>
-      <label class="opt" for="q2d"><span>D</span>31岁以上 (0)</label>
+      <p class="score-tips">A/B/C/D 分数递增</p>
+      <label class="opt" for="q2"><span>A</span>20岁以下</label>
+      <label class="opt" for="q2"><span>B</span>20-25岁</label>
+      <label class="opt" for="q2"><span>C</span>26-30岁</label>
+      <label class="opt" for="q2"><span>D</span>31岁以上</label>
     </div>
     
     <!-- Q2 -->
     <div class="q-card" id="q2-card">
       <h2><span class="num">2</span>你的社交圈异性多吗？</h2>
-      <p class="score-tips">继续累计分数~</p>
-      <label class="opt" for="q3a"><span>A</span>多到爆 (+3)</label>
-      <label class="opt" for="q3b"><span>B</span>还行 (+2)</label>
-      <label class="opt" for="q3c"><span>C</span>少 (+1)</label>
-      <label class="opt" for="q3d"><span>D</span>几乎没有 (0)</label>
+      <p class="score-tips">继续~</p>
+      <label class="opt" for="q3"><span>A</span>多到爆</label>
+      <label class="opt" for="q3"><span>B</span>还行</label>
+      <label class="opt" for="q3"><span>C</span>比较少</label>
+      <label class="opt" for="q3"><span>D</span>几乎没有</label>
     </div>
     
     <!-- Q3 -->
     <div class="q-card" id="q3-card">
       <h2><span class="num">3</span>遇到喜欢的人你会？</h2>
-      <p class="score-tips">接近尾声了~</p>
-      <label class="opt" for="q4a"><span>A</span>直接出击 (+3)</label>
-      <label class="opt" for="q4b"><span>B</span>暗中观察 (+2)</label>
-      <label class="opt" for="q4c"><span>C</span>犹豫放弃 (+1)</label>
-      <label class="opt" for="q4d"><span>D</span>等待缘分 (0)</label>
-    </div>
-    
-    <!-- Q4 -->
-    <div class="q-card" id="q4-card">
-      <h2><span class="num">4</span>你会主动参加社交活动吗？</h2>
-      <p class="score-tips">最后一道，综合所有题目计算结果！</p>
-      <label class="opt" for="r-s"><span>A</span>各种局都参加 (+3)</label>
-      <label class="opt" for="r-a"><span>B</span>偶尔参加 (+2)</label>
-      <label class="opt" for="r-b"><span>C</span>有人叫才去 (+1)</label>
-      <label class="opt" for="r-d"><span>D</span>死宅家中 (0)</label>
+      <p class="score-tips">最后一题前最后一题~</p>
+      <label class="opt" for="q4a"><span>A</span>直接出击</label>
+      <label class="opt" for="q4b"><span>B</span>暗中观察</label>
+      <label class="opt" for="q4c"><span>C</span>犹豫</label>
+      <label class="opt" for="q4d"><span>D</span>等待缘分</label>
+      <p class="score-tips" style="margin-top:15px;">▼ 前面3题是AABB这样？选这个：</p>
+      <label class="opt" for="q4-2a"><span>A</span>前3题2A1B</label>
+      <label class="opt" for="q4-2b"><span>B</span>前3题1A2B</label>
+      <label class="opt" for="q4-2c"><span>C</span>前3题3个C或D</label>
+      <p class="score-tips" style="margin-top:15px;">▼ 前面3题有D？选这个：</p>
+      <label class="opt" for="q4-3a"><span>A</span>前3题有1-2个D</label>
+      <label class="opt" for="q4-3b"><span>B</span>前3题全是D</label>
     </div>
     
     <!-- 结果页 -->
-    <div class="result-card" id="r-s">
-      <div class="circle"><div class="sc">S</div><div class="lb">10-12分</div></div>
+    <div class="result-card" id="result-s">
+      <div class="circle"><div class="sc">S</div><div class="lb">高分</div></div>
       <div class="tt">脱单王者 🌟</div>
       <div class="dc">你简直是异性磁铁！桃花运爆棚！</div>
       <div class="tp"><strong>建议：</strong>别太挑了，看准就下手吧！</div>
       <a href="dan-nan.html" class="btn">再测一次</a>
     </div>
     
-    <div class="result-card" id="r-a">
-      <div class="circle"><div class="sc">A</div><div class="lb">8-9分</div></div>
+    <div class="result-card" id="result-a">
+      <div class="circle"><div class="sc">A</div><div class="lb">中上</div></div>
       <div class="tt">潜力股 💪</div>
       <div class="dc">条件不错，稍微主动一点就能脱单！</div>
       <div class="tp"><strong>建议：</strong>扩大社交圈，遇到喜欢的就上！</div>
       <a href="dan-nan.html" class="btn">再测一次</a>
     </div>
     
-    <div class="result-card" id="r-b">
-      <div class="circle"><div class="sc">B</div><div class="lb">5-7分</div></div>
+    <div class="result-card" id="result-b">
+      <div class="circle"><div class="sc">B</div><div class="lb">中等</div></div>
       <div class="tt">普通玩家 🎮</div>
       <div class="dc">脱单难度中等，需要一点点努力和运气~</div>
       <div class="tp"><strong>建议：</strong>提升一下穿搭，偶尔主动邀约！</div>
       <a href="dan-nan.html" class="btn">再测一次</a>
     </div>
     
-    <div class="result-card" id="r-c">
-      <div class="circle"><div class="sc">C</div><div class="lb">3-4分</div></div>
+    <div class="result-card" id="result-c">
+      <div class="circle"><div class="sc">C</div><div class="lb">困难</div></div>
       <div class="tt">困难模式 😰</div>
       <div class="dc">脱单有点难度，但也不是完全没希望！</div>
       <div class="tp"><strong>建议：</strong>先从增加社交活动开始吧！</div>
-      <a href="dan-nan.html" class="btn">再测一次</a>
-    </div>
-    
-    <div class="result-card" id="r-d">
-      <div class="circle"><div class="sc">D</div><div class="lb">0-2分</div></div>
-      <div class="tt">地狱难度 🔥</div>
-      <div class="dc">你...需要加油了！</div>
-      <div class="tp"><strong>建议：</strong>先认识新朋友吧，宅是找不到对象的！</div>
       <a href="dan-nan.html" class="btn">再测一次</a>
     </div>
   </div>
