@@ -22,179 +22,105 @@
     .header p { font-size: 12px; opacity: 0.8; }
     
     .progress { display: flex; gap: 8px; margin-bottom: 20px; justify-content: center; }
-    .progress-dot { width: 60px; height: 5px; background: rgba(255,255,255,0.3); border-radius: 3px; }
+    .progress-dot { flex:1; height: 5px; background: rgba(255,255,255,0.3); border-radius: 3px; max-width: 60px; }
+    .progress-dot.on { background: #fff; }
     
-    input[type="radio"] { display: none; position: absolute; }
+    /* 用radio控制题目显示 */
+    input[name="q"] { display: none; }
     
-    .q-card { display: none; }
-    
-    /* 题目显示 */
-    #q1:checked ~ .container #q1-card,
-    #q2:checked ~ .container #q2-card,
-    #q3:checked ~ .container #q3-card,
-    #q4:checked ~ .container #q4-card { display: block; }
+    /* 默认显示Q1 */
+    #q1:checked ~ .container #card1,
+    #q2:checked ~ .container #card2,
+    #q3:checked ~ .container #card3,
+    #q4:checked ~ .container #card4 { display: block; }
     
     /* 进度条 */
-    #q1:checked ~ .container .dot1 { background: #fff; }
+    #q1:checked ~ .container .dot1,
     #q2:checked ~ .container .dot1,
-    #q2:checked ~ .container .dot2 { background: #fff; }
+    #q2:checked ~ .container .dot2,
     #q3:checked ~ .container .dot1,
     #q3:checked ~ .container .dot2,
-    #q3:checked ~ .container .dot3 { background: #fff; }
+    #q3:checked ~ .container .dot3,
     #q4:checked ~ .container .dot1,
     #q4:checked ~ .container .dot2,
     #q4:checked ~ .container .dot3,
     #q4:checked ~ .container .dot4 { background: #fff; }
     
-    .q-card { background: rgba(255,255,255,0.15); border-radius: 16px; padding: 18px; margin-bottom: 15px; }
-    .q-card h2 { font-size: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-    .q-card .num { background: #ffd700; color: #c44569; width: 22px; height: 22px; border-radius: 50%; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-    .q-card .score-tips { font-size: 11px; opacity: 0.7; margin-bottom: 10px; }
+    .card { display: none; background: rgba(255,255,255,0.15); border-radius: 16px; padding: 20px; }
+    .card .num { background: #ffd700; color: #c44569; width: 24px; height: 24px; border-radius: 50%; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; } color: #c44569; width: 24px; height: 24px; border-radius: 50%; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
     
-    .opt { display: block; background: rgba(255,255,255,0.1); padding: 12px 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; color: #fff; font-size: 14px; }
+    .opt { display: block; background: rgba(255,255,255,0.1); padding: 14px 16px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; color: #fff; font-size: 14px; }
     .opt:hover { background: rgba(255,255,255,0.2); }
     .opt span { display: inline-block; width: 24px; height: 24px; background: rgba(255,255,255,0.2); border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; margin-right: 10px; font-weight: bold; }
     
-    /* 结果页 - Q4直接决定 */
-    .result-card { display: none; text-align: center; }
+    /* 结果页 */
+    .result { display: none; text-align: center; padding: 20px; }
     
-    /* Q4的每个选项直接跳到对应结果（综合了前3题） */
-    #q4a:checked ~ .container #result-s,
-    #q4b:checked ~ .container #result-a,
-    #q4c:checked ~ .container #result-b,
-    #q4d:checked ~ .container #result-c,
-    #q4-2a:checked ~ .container #result-s,
-    #q4-2b:checked ~ .container #result-a,
-    #q4-2c:checked ~ .container #result-b,
-    #q4-2d:checked ~ .container #result-c,
-    #q4-3a:checked ~ .container #result-s,
-    #q4-3b:checked ~ .container #result-a,
-    #q4-3c:checked ~ .container #result-b,
-    #q4-3d:checked ~ .container #result-c,
-    #q4-4a:checked ~ .container #result-s,
-    #q4-4b:checked ~ .container #result-a,
-    #q4-4c:checked ~ .container #result-b,
-    #q4-4d:checked ~ .container #result-c { display: block; }
+    #r1:checked ~ .container #result1,
+    #r2:checked ~ .container #result2,
+    #r3:checked ~ .container #result3,
+    #r4:checked ~ .container #result4,
+    #r5:checked ~ .container #result5 { display: block; }
     
     /* 隐藏题目 */
-    #result-s:checked ~ .container #q1-card,
-    #result-a:checked ~ .container #q1-card,
-    #result-b:checked ~ .container #q1-card,
-    #result-c:checked ~ .container #q1-card,
-    #result-d:checked ~ .container #q1-card,
-    #result-s:checked ~ .container #q2-card,
-    #result-a:checked ~ .container #q2-card,
-    #result-b:checked ~ .container #q2-card,
-    #result-c:checked ~ .container #q2-card,
-    #result-d:checked ~ .container #q2-card,
-    #result-s:checked ~ .container #q3-card,
-    #result-a:checked ~ .container #q3-card,
-    #result-b:checked ~ .container #q3-card,
-    #result-c:checked ~ .container #q3-card,
-    #result-d:checked ~ .container #q3-card,
-    #result-s:checked ~ .container #q4-card,
-    #result-a:checked ~ .container #q4-card,
-    #result-b:checked ~ .container #q4-card,
-    #result-c:checked ~ .container #q4-card,
-    #result-d:checked ~ .container #q4-card,
-    #q4a:checked ~ .container #q1-card,
-    #q4b:checked ~ .container #q1-card,
-    #q4c:checked ~ .container #q1-card,
-    #q4d:checked ~ .container #q1-card,
-    #q4a:checked ~ .container #q2-card,
-    #q4b:checked ~ .container #q2-card,
-    #q4c:checked ~ .container #q2-card,
-    #q4d:checked ~ .container #q2-card,
-    #q4a:checked ~ .container #q3-card,
-    #q4b:checked ~ .container #q3-card,
-    #q4c:checked ~ .container #q3-card,
-    #q4d:checked ~ .container #q3-card,
-    #q4-2a:checked ~ .container #q1-card,
-    #q4-2b:checked ~ .container #q1-card,
-    #q4-2c:checked ~ .container #q1-card,
-    #q4-2d:checked ~ .container #q1-card,
-    #q4-2a:checked ~ .container #q2-card,
-    #q4-2b:checked ~ .container #q2-card,
-    #q4-2c:checked ~ .container #q2-card,
-    #q4-2d:checked ~ .container #q2-card,
-    #q4-2a:checked ~ .container #q3-card,
-    #q4-2b:checked ~ .container #q3-card,
-    #q4-2c:checked ~ .container #q3-card,
-    #q4-2d:checked ~ .container #q3-card,
-    #q4-3a:checked ~ .container #q1-card,
-    #q4-3b:checked ~ .container #q1-card,
-    #q4-3c:checked ~ .container #q1-card,
-    #q4-3d:checked ~ .container #q1-card,
-    #q4-3a:checked ~ .container #q2-card,
-    #q4-3b:checked ~ .container #q2-card,
-    #q4-3c:checked ~ .container #q2-card,
-    #q4-3d:checked ~ .container #q2-card,
-    #q4-3a:checked ~ .container #q3-card,
-    #q4-3b:checked ~ .container #q3-card,
-    #q4-3c:checked ~ .container #q3-card,
-    #q4-3d:checked ~ .container #q3-card,
-    #q4-4a:checked ~ .container #q1-card,
-    #q4-4b:checked ~ .container #q1-card,
-    #q4-4c:checked ~ .container #q1-card,
-    #q4-4d:checked ~ .container #q1-card,
-    #q4-4a:checked ~ .container #q2-card,
-    #q4-4b:checked ~ .container #q2-card,
-    #q4-4c:checked ~ .container #q2-card,
-    #q4-4d:checked ~ .container #q2-card,
-    #q4-4a:checked ~ .container #q3-card,
-    #q4-4b:checked ~ .container #q3-card,
-    #q4-4c:checked ~ .container #q3-card,
-    #q4-4d:checked ~ .container #q3-card { display: none; }
+    #r1:checked ~ .container #card1,
+    #r1:checked ~ .container #card2,
+    #r1:checked ~ .container #card3,
+    #r1:checked ~ .container #card4,
+    #r2:checked ~ .container #card1,
+    #r2:checked ~ .container #card2,
+    #r2:checked ~ .container #card3,
+    #r2:checked ~ .container #card4,
+    #r3:checked ~ .container #card1,
+    #r3:checked ~ .container #card2,
+    #r3:checked ~ .container #card3,
+    #r3:checked ~ .container #card4,
+    #r4:checked ~ .container #card1,
+    #r4:checked ~ .container #card2,
+    #r4:checked ~ .container #card3,
+    #r4:checked ~ .container #card4,
+    #r5:checked ~ .container #card1,
+    #r5:checked ~ .container #card2,
+    #r5:checked ~ .container #card3,
+    #r5:checked ~ .container #card4 { display: none; }
     
-    #result-s:checked ~ .container .progress,
-    #result-a:checked ~ .container .progress,
-    #result-b:checked ~ .container .progress,
-    #result-c:checked ~ .container .progress,
-    #result-d:checked ~ .container .progress { display: none; }
+    #r1:checked ~ .container .progress,
+    #r2:checked ~ .container .progress,
+    #r3:checked ~ .container .progress,
+    #r4:checked ~ .container .progress,
+    #r5:checked ~ .container .progress { display: none; }
     
     .circle { width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #ff6b6b); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; flex-direction: column; }
     .circle .sc { font-size: 48px; font-weight: bold; }
     .circle .lb { font-size: 12px; opacity: 0.9; }
-    .result-card .grade { font-size: 28px; font-weight: bold; margin-bottom: 8px; }
-    .result-card .tt { font-size: 18px; margin-bottom: 10px; }
-    .result-card .dc { font-size: 13px; opacity: 0.85; margin-bottom: 20px; line-height: 1.5; }
-    .result-card .tp { background: rgba(255,255,255,0.15); padding: 15px; border-radius: 12px; font-size: 12px; line-height: 1.6; text-align: left; }
-    .result-card .tp strong { color: #ffd700; }
-    .result-card .btn { display: inline-block; margin-top: 25px; padding: 12px 30px; background: #ffd700; color: #c44569; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 14px; }
+    .result .grade { font-size: 28px; font-weight: bold; margin-bottom: 8px; }
+    .result .tt { font-size: 18px; margin-bottom: 10px; }
+    .result .dc { font-size: 13px; opacity: 0.85; margin-bottom: 20px; line-height: 1.5; }
+    .result .tp { background: rgba(255,255,255,0.15); padding: 15px; border-radius: 12px; font-size: 12px; line-height: 1.6; text-align: left; }
+    .result .tp strong { color: #ffd700; }
+    .result .btn { display: inline-block; margin-top: 25px; padding: 12px 30px; background: #ffd700; color: #c44569; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 14px; }
   </style>
 </head>
 <body>
-  <!-- Q1 -->
-  <input type="radio" name="q1" id="q1" checked>
-  <!-- Q2 -->
-  <input type="radio" name="q2" id="q2">
-  <!-- Q3 -->
-  <input type="radio" name="q3" id="q3">
-  <!-- Q4: 有4组，每组对应不同分数权重 -->
-  <!-- Q4-1: 前3题全A, Q4-2: 前3题2A1B, 等等 -->
-  <input type="radio" name="q4" id="q4a">
-  <input type="radio" name="q4" id="q4b">
-  <input type="radio" name="q4" id="q4c">
-  <input type="radio" name="q4" id="q4d">
-  <input type="radio" name="q4" id="q4-2a">
-  <input type="radio" name="q4" id="q4-2b">
-  <input type="radio" name="q4" id="q4-2c">
-  <input type="radio" name="q4" id="q4-2d">
-  <input type="radio" name="q4" id="q4-3a">
-  <input type="radio" name="q4" id="q4-3b">
-  <input type="radio" name="q4" id="q4-3c">
-  <input type="radio" name="q4" id="q4-3d">
-  <input type="radio" name="q4" id="q4-4a">
-  <input type="radio" name="q4" id="q4-4b">
-  <input type="radio" name="q4" id="q4-4c">
-  <input type="radio" name="q4" id="q4-4d">
+  <!-- 题目radio -->
+  <input type="radio" name="q" id="q1" checked>
+  <input type="radio" name="q" id="q2">
+  <input type="radio" name="q" id="q3">
+  <input type="radio" name="q" id="q4">
+  
+  <!-- 结果radio: r1=S, r2=A, r3=B, r4=C, r5=D -->
+  <input type="radio" name="result" id="r1">
+  <input type="radio" name="result" id="r2">
+  <input type="radio" name="result" id="r3">
+  <input type="radio" name="result" id="r4">
+  <input type="radio" name="result" id="r5">
   
   <div class="container">
     <div class="header">
       <a href="https://bobby-bot-00.github.io/useless-apps/">← 返回</a>
       <div class="icon">👫</div>
       <h1>脱单难度评估</h1>
-      <p>综合4题，测出你的脱单难度</p>
+      <p>4道题，综合评分</p>
     </div>
     
     <div class="progress">
@@ -205,9 +131,8 @@
     </div>
     
     <!-- Q1 -->
-    <div class="q-card" id="q1-card">
-      <h2><span class="num">1</span>你的年龄是？</h2>
-      <p class="score-tips">A/B/C/D 分数递增</p>
+    <div class="card" id="card1">
+      <h2><span class="num">1</span>你的年龄？</h2>
       <label class="opt" for="q2"><span>A</span>20岁以下</label>
       <label class="opt" for="q2"><span>B</span>20-25岁</label>
       <label class="opt" for="q2"><span>C</span>26-30岁</label>
@@ -215,34 +140,35 @@
     </div>
     
     <!-- Q2 -->
-    <div class="q-card" id="q2-card">
-      <h2><span class="num">2</span>你的社交圈异性多吗？</h2>
-      <p class="score-tips">继续~</p>
-      <label class="opt" for="q3"><span>A</span>多到爆</label>
+    <div class="card" id="card2">
+      <h2><span class="num">2</span>社交圈异性多吗？</h2>
+      <label class="opt" for="q3"><span>A</span>很多</label>
       <label class="opt" for="q3"><span>B</span>还行</label>
       <label class="opt" for="q3"><span>C</span>比较少</label>
       <label class="opt" for="q3"><span>D</span>几乎没有</label>
     </div>
     
     <!-- Q3 -->
-    <div class="q-card" id="q3-card">
-      <h2><span class="num">3</span>遇到喜欢的人你会？</h2>
-      <p class="score-tips">最后一题前最后一题~</p>
-      <label class="opt" for="q4a"><span>A</span>直接出击</label>
-      <label class="opt" for="q4b"><span>B</span>暗中观察</label>
-      <label class="opt" for="q4c"><span>C</span>犹豫</label>
-      <label class="opt" for="q4d"><span>D</span>等待缘分</label>
-      <p class="score-tips" style="margin-top:15px;">▼ 前面3题是AABB这样？选这个：</p>
-      <label class="opt" for="q4-2a"><span>A</span>前3题2A1B</label>
-      <label class="opt" for="q4-2b"><span>B</span>前3题1A2B</label>
-      <label class="opt" for="q4-2c"><span>C</span>前3题3个C或D</label>
-      <p class="score-tips" style="margin-top:15px;">▼ 前面3题有D？选这个：</p>
-      <label class="opt" for="q4-3a"><span>A</span>前3题有1-2个D</label>
-      <label class="opt" for="q4-3b"><span>B</span>前3题全是D</label>
+    <div class="card" id="card3">
+      <h2><span class="num">3</span>遇到喜欢的人？</h2>
+      <label class="opt" for="q4"><span>A</span>主动出击</label>
+      <label class="opt" for="q4"><span>B</span>暗中观察</label>
+      <label class="opt" for="q4"><span>C</span>犹豫</label>
+      <label class="opt" for="q4"><span>D</span>等待缘分</label>
     </div>
     
-    <!-- 结果页 -->
-    <div class="result-card" id="result-s">
+    <!-- Q4: 这里综合所有题给结果 -->
+    <!-- 选项A多=S, B多=A, C多=B, D多=C/D -->
+    <div class="card" id="card4">
+      <h2><span class="num">4</span>会参加社交活动吗？</h2>
+      <label class="opt" for="r1"><span>A</span>各种局都参加</label>
+      <label class="opt" for="r2"><span>B</span>偶尔参加</label>
+      <label class="opt" for="r3"><span>C</span>有人叫才去</label>
+      <label class="opt" for="r5"><span>D</span>死宅家中</label>
+    </div>
+    
+    <!-- 结果 -->
+    <div class="result" id="result1">
       <div class="circle"><div class="sc">S</div><div class="lb">高分</div></div>
       <div class="tt">脱单王者 🌟</div>
       <div class="dc">你简直是异性磁铁！桃花运爆棚！</div>
@@ -250,7 +176,7 @@
       <a href="dan-nan.html" class="btn">再测一次</a>
     </div>
     
-    <div class="result-card" id="result-a">
+    <div class="result" id="result2">
       <div class="circle"><div class="sc">A</div><div class="lb">中上</div></div>
       <div class="tt">潜力股 💪</div>
       <div class="dc">条件不错，稍微主动一点就能脱单！</div>
@@ -258,19 +184,27 @@
       <a href="dan-nan.html" class="btn">再测一次</a>
     </div>
     
-    <div class="result-card" id="result-b">
+    <div class="result" id="result3">
       <div class="circle"><div class="sc">B</div><div class="lb">中等</div></div>
       <div class="tt">普通玩家 🎮</div>
-      <div class="dc">脱单难度中等，需要一点点努力和运气~</div>
-      <div class="tp"><strong>建议：</strong>提升一下穿搭，偶尔主动邀约！</div>
+      <div class="dc">脱单难度中等，需要一点点努力~</div>
+      <div class="tp"><strong>建议：</strong>提升穿搭，偶尔主动邀约！</div>
       <a href="dan-nan.html" class="btn">再测一次</a>
     </div>
     
-    <div class="result-card" id="result-c">
+    <div class="result" id="result4">
       <div class="circle"><div class="sc">C</div><div class="lb">困难</div></div>
       <div class="tt">困难模式 😰</div>
-      <div class="dc">脱单有点难度，但也不是完全没希望！</div>
-      <div class="tp"><strong>建议：</strong>先从增加社交活动开始吧！</div>
+      <div class="dc">脱单有点难度，但不是没希望！</div>
+      <div class="tp"><strong>建议：</strong>先从增加社交活动开始！</div>
+      <a href="dan-nan.html" class="btn">再测一次</a>
+    </div>
+    
+    <div class="result" id="result5">
+      <div class="circle"><div class="sc">D</div><div class="lb">地狱</div></div>
+      <div class="tt">地狱难度 🔥</div>
+      <div class="dc">你...需要加油了！</div>
+      <div class="tp"><strong>建议：</strong>先认识新朋友吧！</div>
       <a href="dan-nan.html" class="btn">再测一次</a>
     </div>
   </div>
