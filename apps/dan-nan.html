@@ -16,6 +16,7 @@
     .container { max-width: 500px; margin: 0 auto; }
     
     .header { text-align: center; margin-bottom: 20px; }
+    .header a { color: #fff; opacity: 0.7; font-size: 12px; text-decoration: none; }
     .header .icon { font-size: 50px; }
     .header h1 { font-size: 22px; margin: 5px 0; }
     .header p { font-size: 12px; opacity: 0.8; }
@@ -25,17 +26,14 @@
     
     input[type="radio"] { display: none; position: absolute; }
     
-    /* 隐藏所有卡片 */
     .q-card { display: none; }
     
-    /* 用CSS显示对应题目 */
     #q1:checked ~ .container #q1-card,
     #q2:checked ~ .container #q2-card,
     #q3:checked ~ .container #q3-card,
     #q4:checked ~ .container #q4-card,
     #q5:checked ~ .container #q5-card,
-    #q6:checked ~ .container #q6-card,
-    #result:checked ~ .container #result-card { display: block; }
+    #q6:checked ~ .container #q6-card { display: block; }
     
     /* 进度条 */
     #q1:checked ~ .container .progress .dot1,
@@ -58,13 +56,7 @@
     #q6:checked ~ .container .progress .dot3,
     #q6:checked ~ .container .progress .dot4,
     #q6:checked ~ .container .progress .dot5,
-    #q6:checked ~ .container .progress .dot6,
-    #result:checked ~ .container .progress .dot1,
-    #result:checked ~ .container .progress .dot2,
-    #result:checked ~ .container .progress .dot3,
-    #result:checked ~ .container .progress .dot4,
-    #result:checked ~ .container .progress .dot5,
-    #result:checked ~ .container .progress .dot6 { background: #ffd700; }
+    #q6:checked ~ .container .progress .dot6 { background: #ffd700; }
     
     #q1:checked ~ .container .progress .dot1,
     #q2:checked ~ .container .progress .dot2,
@@ -77,41 +69,87 @@
     .q-card h2 { font-size: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
     .q-card .num { background: #ffd700; color: #c44569; width: 22px; height: 22px; border-radius: 50%; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
     
-    .opt {
-      display: block;
-      background: rgba(255,255,255,0.1);
-      padding: 10px 12px;
-      border-radius: 8px;
-      margin-bottom: 8px;
-      cursor: pointer;
-      color: #fff;
-    }
+    .opt { display: block; background: rgba(255,255,255,0.1); padding: 10px 12px; border-radius: 8px; margin-bottom: 8px; cursor: pointer; color: #fff; }
     .opt:hover { background: rgba(255,255,255,0.2); }
     .opt span { display: inline-block; width: 20px; height: 20px; background: rgba(255,255,255,0.2); border-radius: 50%; text-align: center; line-height: 20px; font-size: 11px; margin-right: 8px; }
     
-    #result-card { text-align: center; }
+    /* 结果页 */
+    .result-card { display: none; text-align: center; }
+    
+    #r-s:checked ~ .container #r-s-card,
+    #r-a:checked ~ .container #r-a-card,
+    #r-b:checked ~ .container #r-b-card,
+    #r-c:checked ~ .container #r-c-card,
+    #r-d:checked ~ .container #r-d-card { display: block; }
+    
+    #r-s:checked ~ .container #q1-card,
+    #r-s:checked ~ .container #q2-card,
+    #r-s:checked ~ .container #q3-card,
+    #r-s:checked ~ .container #q4-card,
+    #r-s:checked ~ .container #q5-card,
+    #r-s:checked ~ .container #q6-card,
+    #r-a:checked ~ .container #q1-card,
+    #r-a:checked ~ .container #q2-card,
+    #r-a:checked ~ .container #q3-card,
+    #r-a:checked ~ .container #q4-card,
+    #r-a:checked ~ .container #q5-card,
+    #r-a:checked ~ .container #q6-card,
+    #r-b:checked ~ .container #q1-card,
+    #r-b:checked ~ .container #q2-card,
+    #r-b:checked ~ .container #q3-card,
+    #r-b:checked ~ .container #q4-card,
+    #r-b:checked ~ .container #q5-card,
+    #r-b:checked ~ .container #q6-card,
+    #r-c:checked ~ .container #q1-card,
+    #r-c:checked ~ .container #q2-card,
+    #r-c:checked ~ .container #q3-card,
+    #r-c:checked ~ .container #q4-card,
+    #r-c:checked ~ .container #q5-card,
+    #r-c:checked ~ .container #q6-card,
+    #r-d:checked ~ .container #q1-card,
+    #r-d:checked ~ .container #q2-card,
+    #r-d:checked ~ .container #q3-card,
+    #r-d:checked ~ .container #q4-card,
+    #r-d:checked ~ .container #q5-card,
+    #r-d:checked ~ .container #q6-card { display: none; }
+    
+    /* 隐藏进度条 */
+    #r-s:checked ~ .container .progress,
+    #r-a:checked ~ .container .progress,
+    #r-b:checked ~ .container .progress,
+    #r-c:checked ~ .container .progress,
+    #r-d:checked ~ .container .progress { display: none; }
+    
     .circle { width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #ff6b6b); margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; flex-direction: column; }
     .circle .sc { font-size: 42px; font-weight: bold; }
     .circle .lb { font-size: 12px; opacity: 0.9; }
-    #result-card .grade { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
-    #result-card .tt { font-size: 16px; margin-bottom: 8px; }
-    #result-card .dc { font-size: 12px; opacity: 0.8; margin-bottom: 15px; line-height: 1.5; }
-    #result-card .tp { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; font-size: 11px; line-height: 1.5; }
-    #result-card .tp strong { color: #ffd700; }
+    .result-card .grade { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
+    .result-card .tt { font-size: 16px; margin-bottom: 8px; }
+    .result-card .dc { font-size: 12px; opacity: 0.8; margin-bottom: 15px; line-height: 1.5; }
+    .result-card .tp { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; font-size: 11px; line-height: 1.5; }
+    .result-card .tp strong { color: #ffd700; }
+    .result-card .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #ffd700; color: #c44569; border-radius: 20px; text-decoration: none; font-weight: bold; }
   </style>
 </head>
 <body>
-  <!-- radio放body下，用~选择器 -->
+  <!-- 题目radio -->
   <input type="radio" name="q" id="q1" checked>
   <input type="radio" name="q" id="q2">
   <input type="radio" name="q" id="q3">
   <input type="radio" name="q" id="q4">
   <input type="radio" name="q" id="q5">
   <input type="radio" name="q" id="q6">
-  <input type="radio" name="q" id="result">
+  
+  <!-- 结果radio -->
+  <input type="radio" name="result" id="r-s">
+  <input type="radio" name="result" id="r-a">
+  <input type="radio" name="result" id="r-b">
+  <input type="radio" name="result" id="r-c">
+  <input type="radio" name="result" id="r-d">
   
   <div class="container">
     <div class="header">
+      <a href="https://bobby-bot-00.github.io/useless-apps/">← 返回</a>
       <div class="icon">👫</div>
       <h1>脱单难度评估</h1>
       <p>测测你脱单有多难</p>
@@ -126,6 +164,7 @@
       <div class="progress-dot dot6"></div>
     </div>
     
+    <!-- Q1 -->
     <div class="q-card" id="q1-card">
       <h2><span class="num">1</span>你的年龄是？</h2>
       <label class="opt" for="q2"><span>A</span>20岁以下</label>
@@ -135,6 +174,7 @@
       <label class="opt" for="q2"><span>E</span>35岁以上</label>
     </div>
     
+    <!-- Q2 -->
     <div class="q-card" id="q2-card">
       <h2><span class="num">2</span>你的社交圈异性多吗？</h2>
       <label class="opt" for="q3"><span>A</span>多到爆，异性缘超好</label>
@@ -143,6 +183,7 @@
       <label class="opt" for="q3"><span>D</span>几乎没有</label>
     </div>
     
+    <!-- Q3 -->
     <div class="q-card" id="q3-card">
       <h2><span class="num">3</span>遇到喜欢的人你会？</h2>
       <label class="opt" for="q4"><span>A</span>直接出击，主动搭讪</label>
@@ -151,6 +192,7 @@
       <label class="opt" for="q4"><span>D</span>永远等待缘分</label>
     </div>
     
+    <!-- Q4 -->
     <div class="q-card" id="q4-card">
       <h2><span class="num">4</span>你的外在条件自我评价？</h2>
       <label class="opt" for="q5"><span>A</span>走在路上有人搭讪</label>
@@ -159,6 +201,7 @@
       <label class="opt" for="q5"><span>D</span>只能靠内在和才华了</label>
     </div>
     
+    <!-- Q5 -->
     <div class="q-card" id="q5-card">
       <h2><span class="num">5</span>你有多少个异性朋友？</h2>
       <label class="opt" for="q6"><span>A</span>10个以上</label>
@@ -167,23 +210,58 @@
       <label class="opt" for="q6"><span>D</span>0个（悲）</label>
     </div>
     
+    <!-- Q6 - 这里每个选项直接跳到不同结果 -->
     <div class="q-card" id="q6-card">
       <h2><span class="num">6</span>你会主动参加社交活动吗？</h2>
-      <label class="opt" for="result"><span>A</span>各种局都参加</label>
-      <label class="opt" for="result"><span>B</span>偶尔参加</label>
-      <label class="opt" for="result"><span>C</span>有人叫才去</label>
-      <label class="opt" for="result"><span>D</span>死宅家中</label>
+      <!-- A类选项 -> S级结果 -->
+      <label class="opt" for="r-s"><span>A</span>各种局都参加</label>
+      <!-- B类选项 -> A级结果 -->
+      <label class="opt" for="r-a"><span>B</span>偶尔参加</label>
+      <!-- C类选项 -> B级结果 -->
+      <label class="opt" for="r-b"><span>C</span>有人叫才去</label>
+      <!-- D类选项 -> C/D级结果 -->
+      <label class="opt" for="r-d"><span>D</span>死宅家中</label>
     </div>
     
-    <div class="q-card" id="result-card">
-      <div class="circle">
-        <div class="sc">50</div>
-        <div class="lb">分</div>
-      </div>
-      <div class="grade">B</div>
+    <!-- 结果页 -->
+    <div class="result-card" id="r-s-card">
+      <div class="circle"><div class="sc">S</div><div class="lb">顶级</div></div>
+      <div class="tt">脱单王者 🌟</div>
+      <div class="dc">你简直是异性磁铁！桃花运爆棚！</div>
+      <div class="tp"><strong>建议：</strong>别太挑了，看准就下手吧！</div>
+      <a href="dan-nan.html" class="btn">再测一次</a>
+    </div>
+    
+    <div class="result-card" id="r-a-card">
+      <div class="circle"><div class="sc">A</div><div class="lb">优秀</div></div>
+      <div class="tt">潜力股 💪</div>
+      <div class="dc">条件不错，稍微主动一点就能脱单！</div>
+      <div class="tp"><strong>建议：</strong>扩大社交圈，遇到喜欢的就上！</div>
+      <a href="dan-nan.html" class="btn">再测一次</a>
+    </div>
+    
+    <div class="result-card" id="r-b-card">
+      <div class="circle"><div class="sc">B</div><div class="lb">中等</div></div>
       <div class="tt">普通玩家 🎮</div>
       <div class="dc">脱单难度中等，需要一点点努力和运气~</div>
       <div class="tp"><strong>建议：</strong>提升一下穿搭，偶尔主动邀约！</div>
+      <a href="dan-nan.html" class="btn">再测一次</a>
+    </div>
+    
+    <div class="result-card" id="r-c-card">
+      <div class="circle"><div class="sc">C</div><div class="lb">困难</div></div>
+      <div class="tt">困难模式 😰</div>
+      <div class="dc">脱单有点难度，但也不是完全没希望！</div>
+      <div class="tp"><strong>建议：</strong>先从增加社交活动开始吧！</div>
+      <a href="dan-nan.html" class="btn">再测一次</a>
+    </div>
+    
+    <div class="result-card" id="r-d-card">
+      <div class="circle"><div class="sc">D</div><div class="lb">地狱</div></div>
+      <div class="tt">地狱难度 🔥</div>
+      <div class="dc">你...需要加油了！</div>
+      <div class="tp"><strong>建议：</strong>先认识新朋友吧，宅是找不到对象的！</div>
+      <a href="dan-nan.html" class="btn">再测一次</a>
     </div>
   </div>
 </body>
