@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>无用软件100系列 - 产品方案</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      min-height: 100vh;
+      color: #fff;
+      padding: 40px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .header h1 {
+      font-size: 48px;
+      background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 15px;
+    }
+    .header .subtitle {
+      font-size: 20px;
+      color: #a0a0a0;
+    }
+    .tag {
+      display: inline-block;
+      background: rgba(255,107,107,0.2);
+      color: #ff6b6b;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-top: 15px;
+    }
+    
+    /* Section */
+    .section {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 25px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title .icon { font-size: 28px; }
+    
+    /* Video Flow */
+    .flow-steps {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .flow-step {
+      flex: 1;
+      min-width: 140px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+    }
+    .flow-step .time {
+      background: #48dbfb;
+      color: #1a1a2e;
+      padding: 4px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .flow-step h4 { font-size: 16px; margin-bottom: 8px; color: #feca57; }
+    .flow-step p { font-size: 13px; color: #ccc; }
+    
+    /* Apps Grid */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .app-item {
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+    }
+    .app-item .num {
+      background: linear-gradient(135deg, #ff6b6b, #feca57);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .app-item h4 { font-size: 14px; margin: 8px 0; color: #48dbfb; }
+    .app-item p { font-size: 11px; color: #999; }
+    
+    /* Pros Cons */
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .pros, .cons { padding: 20px; border-radius: 15px; }
+    .pros { background: rgba(72, 219, 251, 0.15); border: 1px solid rgba(72, 219, 251, 0.3); }
+    .cons { background: rgba(255, 107, 107, 0.15); border: 1px solid rgba(255, 107, 107, 0.3); }
+    .pros h3 { color: #48dbfb; margin-bottom: 15px; }
+    .cons h3 { color: #ff6b6b; margin-bottom: 15px; }
+    .pros ul, .cons ul { list-style: none; }
+    .pros li, .cons li { padding: 8px 0; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .pros li:before { content: "✓ "; color: #48dbfb; }
+    .cons li:before { content: "⚠️ "; }
+    
+    /* Timeline */
+    .timeline { display: flex; justify-content: space-between; align-items: center; }
+    .timeline-item {
+      text-align: center;
+      flex: 1;
+      position: relative;
+    }
+    .timeline-item:not(:last-child):after {
+      content: "";
+      position: absolute;
+      top: 20px;
+      right: 0;
+      width: 50%;
+      height: 2px;
+      background: rgba(255,255,255,0.2);
+    }
+    .timeline-item:not(:first-child):before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 50%;
+      height: 2px;
+      background: rgba(255,255,255,0.2);
+    }
+    .timeline-dot {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #ff6b6b, #feca57);
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .timeline-item h4 { font-size: 14px; margin-bottom: 5px; }
+    .timeline-item p { font-size: 12px; color: #999; }
+    
+    /* Questions */
+    .questions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+    .question {
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 20px;
+      border-left: 4px solid #feca57;
+    }
+    .question h4 { color: #feca57; margin-bottom: 10px; font-size: 15px; }
+    .question p { color: #ccc; font-size: 13px; }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+      <h1>🎯 无用软件100系列</h1>
+      <p class="subtitle">让 OpenClaw 做的 100 款无用软件</p>
+      <span class="tag">产品方案 v1.0</span>
+    </div>
+    
+    <!-- Video Flow -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">🎬</span>
+        <h2>视频流程设计（2分30秒）</h2>
+      </div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <span class="time">0:00-0:10</span>
+          <h4>开场 Hook</h4>
+          <p>3秒定律，用一句话抓住眼球</p>
+        </div>
+        <div class="flow-step">
+          <span class="time">0:10-0:40</span>
+          <h4>需求提出</h4>
+          <p>夸张场景切入痛点</p>
+        </div>
+        <div class="flow-step">
+          <span class="time">0:40-1:30</span>
+          <h4>功能演示</h4>
+          <p>3+交互点，展示怎么玩</p>
+        </div>
+        <div class="flow-step">
+          <span class="time">1:30-2:00</span>
+          <h4>代码揭秘</h4>
+          <p>亮出核心3-5行代码</p>
+        </div>
+        <div class="flow-step">
+          <span class="time">2:00-2:25</span>
+          <h4>结尾引导</h4>
+          <p>下一个更无用 + 关注提醒</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Apps Ideas -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">💡</span>
+        <h2>首批20款选题</h2>
+      </div>
+      <div class="apps-grid">
+        <div class="app-item"><div class="num">#1</div><h4>分手大师</h4><p>情感共鸣</p></div>
+        <div class="app-item"><div class="num">#2</div><h4>键盘钢琴家</h4><p>简单易学</p></div>
+        <div class="app-item"><div class="num">#3</div><h4>今日运势骰子</h4><p>日常迷信</p></div>
+        <div class="app-item"><div class="num">#4</div><h4>彩虹屁生成器</h4><p>社交货币</p></div>
+        <div class="app-item"><div class="num">#5</div><h4>摸鱼计时器</h4><p>职场共鸣</p></div>
+        <div class="app-item"><div class="num">#6</div><h4>表情包书法家</h4><p>斗图神器</p></div>
+        <div class="app-item"><div class="num">#7</div><h4>体重波动计算器</h4><p>减肥焦虑</p></div>
+        <div class="app-item"><div class="num">#8</div><h4>今天吃什么</h4><p>选择困难</p></div>
+        <div class="app-item"><div class="num">#9</div><h4>骂人词典</h4><p>情绪价值</p></div>
+        <div class="app-item"><div class="num">#10</div><h4>朋友圈文案</h4><p>社交刚需</p></div>
+        <div class="app-item"><div class="num">#11</div><h4>塔罗牌占卜</h4><p>玄学流量</p></div>
+        <div class="app-item"><div class="num">#12</div><h4>亲戚称呼</h4><p>春节流量</p></div>
+        <div class="app-item"><div class="num">#13</div><h4>打工语录</h4><p>职场共鸣</p></div>
+        <div class="app-item"><div class="num">#14</div><h4>随机头像</h4><p>个性表达</p></div>
+        <div class="app-item"><div class="num">#15</div><h4>时间杀死者</h4><p>焦虑共鸣</p></div>
+        <div class="app-item"><div class="num">#16</div><h4>夸夸群测试</h4><p>社交传播</p></div>
+        <div class="app-item"><div class="num">#17</div><h4>沙雕祝福</h4><p>社交货币</p></div>
+        <div class="app-item"><div class="num">#18</div><h4>终极选择器</h4><p>选择困难</p></div>
+        <div class="app-item"><div class="num">#19</div><h4>废话文学</h4><p>玩梗流量</p></div>
+        <div class="app-item"><div class="num">#20</div><h4>社恐自救</h4><p>情绪共鸣</p></div>
+      </div>
+    </div>
+    
+    <!-- Pros & Cons -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">⚖️</span>
+        <h2>优势 vs 风险</h2>
+      </div>
+      <div class="pros-cons">
+        <div class="pros">
+          <h3>✅ 优势</h3>
+          <ul>
+            <li>AI原生内容，市场唯一</li>
+            <li>可持续100款，内容不断</li>
+            <li>我写代码，成本几乎为0</li>
+            <li>"无用"定位有记忆点</li>
+            <li>可扩展：教程、定制、变现</li>
+          </ul>
+        <div class        </div>
+="cons">
+          <h3>⚠️ 风险</h3>
+          <ul>
+            <li>创意枯竭 → 选题库缓解</li>
+            <li>平台限流 → 优化前3秒</li>
+            <li>体验不如App → 用截图代替</li>
+            <li>版权风险 → 全部原创</li>
+            <li>变现困难 → 预设广告/教程</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Timeline -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">📅</span>
+        <h2>执行路线图</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot">W1</div>
+          <h4>立项 + 账号</h4>
+          <p>首批5款开发</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">W2-3</div>
+          <h4>测试发布</h4>
+          <p>数据复盘优化</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">W4-8</div>
+          <h4>持续更新</h4>
+          <p>互动运营</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">W9+</div>
+          <h4>中期调整</h4>
+          <p>根据数据方向</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Questions -->
+    <div class="section">
+      <div class="section-title">
+        <span class="icon">❓</span>
+        <h2>需要确认</h2>
+      </div>
+      <div class="questions">
+        <div class="question">
+          <h4>1. 账号选择</h4>
+          <p>用现有账号还是新开账号？</p>
+        </div>
+        <div class="question">
+          <h4>2. 发布平台</h4>
+          <p>抖音优先还是小红书优先？</p>
+        </div>
+        <div class="question">
+          <h4>3. 出镜方式</h4>
+          <p>你出镜还是纯软件展示？</p>
+        </div>
+        <div class="question">
+          <h4>4. 投入程度</h4>
+          <p>兼职玩还是认真做？</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>🦉 产品经理：Bobby | 2026-03-06</p>
+    </div>
+    
+  </div>
+</body>
+</html>

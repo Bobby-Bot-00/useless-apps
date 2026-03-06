@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>无用软件100系列 v2.0 - 评分测试系列</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #fff;
+      padding: 40px 20px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .header h1 {
+      font-size: 42px;
+      background: linear-gradient(90deg, #fff, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 20px;
+      border-radius: 20px;
+      margin-top: 15px;
+    }
+    
+    .section {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 25px;
+    }
+    .section-title {
+      font-size: 22px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+    .app-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .app-card:hover { transform: translateY(-5px); }
+    .app-card .icon { font-size: 40px; margin-bottom: 10px; }
+    .app-card h4 { font-size: 16px; margin-bottom: 8px; }
+    .app-card p { font-size: 12px; opacity: 0.8; }
+    .app-card .tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 4px 10px;
+      margin-top: 10px;
+      background: rgba(255,215,0,0.3);
+      border-radius: 10px;
+    }
+    
+    .flow {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .flow-step {
+      flex: 1;
+      min-width: 150px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 20px;
+    }
+    .flow-step .num {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, #ffd700, #ff6b6b);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .flow-step h4 { margin-bottom: 8px; }
+    .flow-step p { font-size: 13px; opacity: 0.8; }
+    
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .box {
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .pros { background: rgba(46, 213, 115, 0.2); }
+    .cons { background: rgba(255, 107, 107, 0.2); }
+    .box h3 { margin-bottom: 15px; }
+    .box ul { list-style: none; }
+    .box li { padding: 8px 0; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .pros li:before { content: "✓ "; }
+    .cons li:before { content: "⚠️ "; }
+    
+    .questions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+    .q {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid #ffd700;
+    }
+    .q h4 { color: #ffd700; margin-bottom: 8px; }
+    .q p { font-size: 13px; }
+    
+    .footer {
+      text-align: center;
+      color: #aaa;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="header">
+      <h1>🎯 无用软件100系列 v2.0</h1>
+      <p>评分测试系列 - 看看你能得几分</p>
+      <span class="tag">产品方案 v2.0 · 2026-03-06</span>
+    </div>
+    
+    <!-- 新系列介绍 -->
+    <div class="section">
+      <div class="section-title">💡 核心转变</div>
+      <p style="font-size: 16px; line-height: 1.8;">
+        从"工具类"→"社交类"<br><br>
+        评分测试类app的核心是<strong>话题性 + 传播性</strong>，<br>
+        用户会主动分享结果到朋友圈/群，形成二次传播。
+      </p>
+    </div>
+    
+    <!-- 首批选题 -->
+    <div class="section">
+      <div class="section-title">🔥 首批20款评分测试</div>
+      <div class="app-grid">
+        <div class="app-card">
+          <div class="icon">🐕</div>
+          <h4>舔狗评分系统</h4>
+          <p>测测你是几级舔狗</p>
+          <span class="tag">情感流量</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">💼</div>
+          <h4>打工人评级</h4>
+          <p>你在公司是什么牛马</p>
+          <span class="tag">职场共鸣</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🏠</div>
+          <h4>生活环境评分</h4>
+          <p>你的居住环境合格吗</p>
+          <span class="tag">生活刚需</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">💪</div>
+          <h4>健康程度测试</h4>
+          <p>身体年龄vs实际年龄</p>
+          <span class="tag">养生焦虑</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">💰</div>
+          <h4>财运评估</h4>
+          <p>测测你的金钱运</p>
+          <span class="tag">玄学流量</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">😰</div>
+          <h4>焦虑指数测试</h4>
+          <p>你最近有多焦虑</p>
+          <span class="tag">情绪共鸣</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">👶</div>
+          <h4>脱单难度评估</h4>
+          <p>你为什么还是单身</p>
+          <span class="tag">社交货币</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">📱</div>
+          <h4>手机依赖程度</h4>
+          <p>你有多离不开手机</p>
+          <span class="tag">行为洞察</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🌙</div>
+          <h4>熬夜等级测试</h4>
+          <p>你是几点睡的修仙党</p>
+          <span class="tag">生活习惯</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🍜</div>
+          <h4>吃货指数</h4>
+          <p>你是真吃货还是假吃货</p>
+          <span class="tag">趣味测试</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">💔</div>
+          <h4>分手伤害评估</h4>
+          <p>上一段感情给你多大伤害</p>
+          <span class="tag">情感疗愈</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🎮</div>
+          <h4>网瘾程度测试</h4>
+          <p>你玩游戏有多上瘾</p>
+          <span class="tag">行为洞察</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">💳</div>
+          <h4>消费账单分析</h4>
+          <p>你的钱都花哪了</p>
+          <span class="tag">理财焦虑</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">👴</div>
+          <h4>孤独指数测试</h4>
+          <p>你有多久没社交了</p>
+          <span class="tag">情绪共鸣</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">📖</div>
+          <h4>阅读量评估</h4>
+          <p>一年读了几本书</p>
+          <span class="tag">知识焦虑</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🚗</div>
+          <h4>通勤痛苦指数</h4>
+          <p>你上班有多痛苦</p>
+          <span class="tag">职场共鸣</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🎭</div>
+          <h4>社恐等级测试</h4>
+          <p>你是社恐几级患者</p>
+          <span class="tag">情绪共鸣</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">💤</div>
+          <h4>睡眠质量评估</h4>
+          <p>你昨晚睡得好吗</p>
+          <span class="tag">健康焦虑</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🍺</div>
+          <h4>酒量等级测试</h4>
+          <p>你能喝多少</p>
+          <span class="tag">社交货币</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🐔</div>
+          <h4>自律程度测试</h4>
+          <p>你有多自律</p>
+          <span class="tag">行为洞察</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 视频流程 -->
+    <div class="section">
+      <div class="section-title">🎬 视频流程（2分钟版）</div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="num">1</div>
+          <h4>开场Hook</h4>
+          <p>"你能得几分？"引发好奇</p>
+        </div>
+        <div class="flow-step">
+          <div class="num">2</div>
+          <h4>题目演示</h4>
+          <p>展示3-5道测试题</p>
+        </div>
+        <div class="flow-step">
+          <div class="num">3</div>
+          <h4>结果展示</h4>
+          <p>公布分数+趣味评语</p>
+        </div>
+        <div class="flow-step">
+          <div class="num">4</div>
+          <h4>引导分享</h4>
+          <p>"发给朋友PK一下"</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 优势分析 -->
+    <div class="section">
+      <div class="section-title">⚖️ 优势 vs 风险</div>
+      <div class="pros-cons">
+        <div class="box pros">
+          <h3>✅ 优势</h3>
+          <ul>
+            <li>话题性强，用户主动分享</li>
+            <li>制作简单，题目+计算公式</li>
+            <li>可系列化，20款不重样</li>
+            <li>适合评论区互动</li>
+            <li>变现方式：测试付费/广告</li>
+          </ul>
+        </div>
+        <div class="box cons">
+          <h3>⚠️ 风险</h3>
+          <ul>
+            <li>同质化严重，需差异化</li>
+            <li>部分主题可能敏感</li>
+            <li>需要有趣题目和文案</li>
+            <li>昙花一现vs长尾流量</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 待确认 -->
+    <div class="section">
+      <div class="section-title">❓ 需要确认</div>
+      <div class="questions">
+        <div class="q">
+          <h4>1. 首批做哪3款？</h4>
+          <p>建议：打工人评级 + 舔狗评分 + 熬夜等级</p>
+        </div>
+        <div class="q">
+          <h4>2. 测试题目数量？</h4>
+          <p>建议：5-8道题，不多不少</p>
+        </div>
+        <div class="q">
+          <h4>3. 评分标准？</h4>
+          <p>简单A-F级？还是0-100分？</p>
+        </div>
+        <div class="q">
+          <h4>4. 结果页设计？</h4>
+          <p>要加生成图片保存功能吗？</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>🦉 Bobby · 2026-03-06</p>
+    </div>
+    
+  </div>
+</body>
+</html>

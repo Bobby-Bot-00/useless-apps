@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>无用软件100系列 v4.0 - 评分测试系列</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      min-height: 100vh;
+      color: #fff;
+      padding: 40px 20px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    
+    .header { text-align: center; margin-bottom: 40px; }
+    .header h1 {
+      font-size: 42px;
+      background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .tag {
+      display: inline-block;
+      background: rgba(255,107,107,0.2);
+      color: #ff6b6b;
+      padding: 8px 20px;
+      border-radius: 20px;
+      margin-top: 15px;
+    }
+    
+    .section {
+      background: rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 25px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .section-title { font-size: 22px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    
+    .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .app-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .app-card:hover { transform: translateY(-5px); }
+    .app-card .icon { font-size: 40px; margin-bottom: 10px; }
+    .app-card h4 { font-size: 14px; margin-bottom: 8px; }
+    .app-card p { font-size: 11px; opacity: 0.7; }
+    .app-card .tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 4px 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+    .app-card .tag.question { background: rgba(72,219,251,0.2); color: #48dbfb; }
+    .app-card .tag.number { background: rgba(254,202,87,0.2); color: #feca57; }
+    
+    .type-legend {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .type-legend span {
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+    .type-legend .q { background: rgba(72,219,251,0.2); color: #48dbfb; }
+    .type-legend .n { background: rgba(254,202,87,0.2); color: #feca57; }
+    
+    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .box { padding: 20px; border-radius: 15px; }
+    .pros { background: rgba(72,219,251,0.15); border: 1px solid rgba(72,219,251,0.3); }
+    .cons { background: rgba(255,107,107,0.15); border: 1px solid rgba(255,107,107,0.3); }
+    .box h3 { margin-bottom: 15px; font-size: 16px; }
+    .box ul { list-style: none; }
+    .box li { padding: 8px 0; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    
+    .questions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .q {
+      background: rgba(255,255,255,0.08);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid #feca57;
+    }
+    .q h4 { color: #feca57; margin-bottom: 8px; font-size: 14px; }
+    .q p { font-size: 12px; opacity: 0.8; }
+    
+    .footer { text-align: center; color: #666; margin-top: 30px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="header">
+      <h1>🎯 无用软件100系列 v4.0</h1>
+      <p>评分测试系列 - 题目+数字混合</p>
+      <span class="tag">产品方案 v4.0 · 2026-03-06</span>
+    </div>
+    
+    <!-- 核心理念 -->
+    <div class="section">
+      <div class="section-title">💡 输入方式</div>
+      <p style="font-size: 15px; line-height: 1.8; opacity: 0.9;">
+        <strong>测试题</strong>：适合主观判断、行为习惯类<br>
+        <strong>数字输入</strong>：适合客观数据、可量化类<br><br>
+        根据选题灵活选择，用户体验更好
+      </p>
+    </div>
+    
+    <!-- 首批选题 -->
+    <div class="section">
+      <div class="section-title">🔥 首批15款评分测试</div>
+      
+      <div class="type-legend">
+        <span class="q">📝 测试题</span>
+        <span class="n">🔢 数字输入</span>
+      </div>
+      
+      <div class="app-grid">
+        <div class="app-card">
+          <div class="icon">💼</div>
+          <h4>工作性价比</h4>
+          <p>月薪+时长+通勤+摸鱼</p>
+          <span class="tag number">🔢 数字</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🐕</div>
+          <h4>舔狗指数</h4>
+          <p>聊天秒回？送礼物？表白？</p>
+          <span class="tag question">📝 题目</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🌙</div>
+          <h4>熬夜健康度</h4>
+          <p>几点睡？睡多久？几点起？</p>
+          <span class="tag number">🔢 数字</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">💰</div>
+          <h4>消费账单分析</h4>
+          <p>餐饮+购物+娱乐+其他</p>
+          <span class="tag number">🔢 数字</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🏃</div>
+          <h4>运动废柴指数</h4>
+          <p>每周运动几次？每次多久？</p>
+          <span class="tag number">🔢 数字</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">📱</div>
+          <h4>手机依赖度</h4>
+          <p>醒来第一件事？睡前最后一件事？</p>
+          <span class="tag question">📝 题目</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">💔</div>
+          <h4>单身指数</h4>
+          <p>有人追？主动追人？社交圈？</p>
+          <span class="tag question">📝 题目</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🚇</div>
+          <h4>通勤痛苦度</h4>
+          <p>通勤时间+方式+换乘次数</p>
+          <span class="tag number">🔢 数字</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🍜</div>
+          <h4>吃货等级</h4>
+          <p>会做饭？探店频率？零食？</p>
+          <span class="tag question">📝 题目</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🎮</div>
+          <h4>网瘾程度</h4>
+          <p>游戏时长？充值？睡前玩？</p>
+          <span class="tag question">📝 题目</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">💤</div>
+          <h4>睡眠质量</h4>
+          <p>入睡时间+时长+wakeup次数</p>
+          <span class="tag number">🔢 数字</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">👶</div>
+          <h4>脱单难度</h4>
+          <p>年龄+收入+圈子+硬件</p>
+          <span class="tag number">🔢 数字</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">📖</div>
+          <h4>知识焦虑值</h4>
+          <p>看书？学习？焦虑程度？</p>
+          <span class="tag question">📝 题目</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🐔</div>
+          <h4>自律程度</h4>
+          <p>早起？运动？饮食？计划？</p>
+          <span class="tag question">📝 题目</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🎭</div>
+          <h4>社恐等级</h4>
+          <p>打招呼？陌生人？聚会？</p>
+          <span class="tag question">📝 题目</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 优势 -->
+    <div class="section">
+      <div class="section-title">⚖️ 优势 vs 注意</div>
+      <div class="pros-cons">
+        <div class="box pros">
+          <h3>✅ 优势</h3>
+          <ul>
+            <li>测试题：互动性强，轻松有趣</li>
+            <li>数字：结果真实，可PK对比</li>
+            <li>混合模式，覆盖更多场景</li>
+            <li>制作模板化，效率高</li>
+            <li>适合社交传播</li>
+          </ul>
+        </div>
+        <div class="box cons">
+          <h3>⚠️ 注意</h3>
+          <ul>
+            <li>题目要有趣，不能太正经</li>
+            <li>选项要有梗，好玩</li>
+            <li>分数要合理，不能太离谱</li>
+            <li>首批建议做有话题性的</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 待确认 -->
+    <div class="section">
+      <div class="section-title">❓ 需要确认</div>
+      <div class="questions">
+        <div class="q">
+          <h4>1. 首批做哪3款？</h4>
+          <p>建议：工作性价比(数字) + 舔狗指数(题目) + 熬夜健康度(数字)</p>
+        </div>
+        <div class="q">
+          <h4>2. UI风格？</h4>
+          <p>暗黑科技风 / 清新极简风 / 彩色撞色风</p>
+        </div>
+        <div class="q">
+          <h4>3. 评分等级？</h4>
+          <p>0-100分 + S/A/B/C/D 级？</p>
+        </div>
+        <div class="q">
+          <h4>4. 加不加生成图片？</h4>
+          <p>生成结果图保存朋友圈？</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>🦉 Bobby · 2026-03-06</p>
+    </div>
+    
+  </div>
+</body>
+</html>

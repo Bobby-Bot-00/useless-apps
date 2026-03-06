@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>无用软件100系列 v3.0 - 评分计算器系列</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      min-height: 100vh;
+      color: #fff;
+      padding: 40px 20px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    
+    .header { text-align: center; margin-bottom: 40px; }
+    .header h1 {
+      font-size: 42px;
+      background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .tag {
+      display: inline-block;
+      background: rgba(255,107,107,0.2);
+      color: #ff6b6b;
+      padding: 8px 20px;
+      border-radius: 20px;
+      margin-top: 15px;
+    }
+    
+    .section {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 25px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .section-title { font-size: 22px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    
+    .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .app-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s;
+      border: 1px solid transparent;
+    }
+    .app-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.3); }
+    .app-card .icon { font-size: 40px; margin-bottom: 10px; }
+    .app-card h4 { font-size: 15px; margin-bottom: 8px; }
+    .app-card p { font-size: 11px; opacity: 0.7; }
+    .app-card .tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 4px 10px;
+      margin-top: 10px;
+      background: rgba(72,219,251,0.2);
+      color: #48dbfb;
+      border-radius: 10px;
+    }
+    
+    .calculator-demo {
+      background: rgba(0,0,0,0.3);
+      border-radius: 20px;
+      padding: 30px;
+      margin: 20px 0;
+    }
+    .calc-row { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
+    .calc-item {
+      flex: 1;
+      min-width: 140px;
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 12px;
+    }
+    .calc-item label { display: block; font-size: 12px; color: #888; margin-bottom: 8px; }
+    .calc-item input, .calc-item select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      font-size: 16px;
+    }
+    .calc-item input:focus { outline: none; border-color: #48dbfb; }
+    
+    .result-demo {
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(135deg, #ff6b6b, #feca57);
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+    .result-demo .score { font-size: 64px; font-weight: bold; }
+    .result-demo .label { font-size: 18px; opacity: 0.9; }
+    
+    .flow { display: flex; gap: 15px; flex-wrap: wrap; }
+    .flow-step {
+      flex: 1;
+      min-width: 120px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+    }
+    .flow-step .num {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #ff6b6b, #feca57);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .flow-step h4 { font-size: 14px; margin-bottom: 5px; }
+    .flow-step p { font-size: 11px; opacity: 0.7; }
+    
+    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .box { padding: 20px; border-radius: 15px; }
+    .pros { background: rgba(72,219,251,0.15); border: 1px solid rgba(72,219,251,0.3); }
+    .cons { background: rgba(255,107,107,0.15); border: 1px solid rgba(255,107,107,0.3); }
+    .box h3 { margin-bottom: 15px; font-size: 16px; }
+    .box ul { list-style: none; }
+    .box li { padding: 8px 0; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .pros li:before { content: "✓ "; color: #48dbfb; }
+    .cons li:before { content: "⚠️ "; }
+    
+    .questions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .q {
+      background: rgba(255,255,255,0.08);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid #feca57;
+    }
+    .q h4 { color: #feca57; margin-bottom: 8px; font-size: 14px; }
+    .q p { font-size: 12px; opacity: 0.8; }
+    
+    .footer { text-align: center; color: #666; margin-top: 30px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="header">
+      <h1>🎯 无用软件100系列 v3.0</h1>
+      <p>评分计算器系列 - 用数据说话</p>
+      <span class="tag">产品方案 v3.0 · 2026-03-06</span>
+    </div>
+    
+    <!-- 核心理念 -->
+    <div class="section">
+      <div class="section-title">💡 核心升级</div>
+      <p style="font-size: 15px; line-height: 1.8; opacity: 0.9;">
+        参考 <strong>job-score</strong> 思路：从纯测试题 → <strong>输入数据计算得分</strong><br><br>
+        用户输入真实数据 → 系统计算分数 → 分享结果PK<br><br>
+        <strong>优势</strong>: 更有参与感、结果更真实、传播性更强
+      </p>
+    </div>
+    
+    <!-- 首批选题 -->
+    <div class="section">
+      <div class="section-title">🔥 首批15款评分计算器</div>
+      <div class="app-grid">
+        <div class="app-card">
+          <div class="icon">💼</div>
+          <h4>工作性价比</h4>
+          <p>月薪+时长+摸鱼算得分</p>
+          <span class="tag">参考job-score</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🐕</div>
+          <h4>舔狗指数</h4>
+          <p>聊天秒回+花钱程度</p>
+          <span class="tag">情感流量</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🌙</div>
+          <h4>熬夜健康度</h4>
+          <p>入睡时间+睡眠时长</p>
+          <span class="tag">健康焦虑</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">💰</div>
+          <h4>消费账单分析</h4>
+          <p>月消费构成明细</p>
+          <span class="tag">理财焦虑</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🏃</div>
+          <h4>运动废柴指数</h4>
+          <p>运动频率+时长+强度</p>
+          <span class="tag">健康焦虑</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">📱</div>
+          <h4>手机依赖度</h4>
+          <p>日使用时长+解锁次数</p>
+          <span class="tag">行为洞察</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">💔</div>
+          <h4>单身指数</h4>
+          <p>社交圈+主动度+颜值</p>
+          <span class="tag">社交货币</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🚇</div>
+          <h4>通勤痛苦度</h4>
+          <p>通勤时间+方式+拥挤度</p>
+          <span class="tag">职场共鸣</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🍜</div>
+          <h4>吃货等级</h4>
+          <p>美食探店+厨艺+零食</p>
+          <span class="tag">趣味测试</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🎮</div>
+          <h4>网瘾程度</h4>
+          <p>游戏时长+充值+队友</p>
+          <span class="tag">行为洞察</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">💤</div>
+          <h4>睡眠质量</h4>
+          <p>入睡时间+时长+wakeup</p>
+          <span class="tag">健康焦虑</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">👶</div>
+          <h4>脱单难度</h4>
+          <p>年龄+圈子+硬件+主动</p>
+          <span class="tag">社交货币</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">📖</div>
+          <h4>知识焦虑值</h4>
+          <p>阅读量+学习时长+焦虑</p>
+          <span class="tag">知识焦虑</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🐔</div>
+          <h4>自律程度</h4>
+          <p>早起+运动+饮食+计划</p>
+          <span class="tag">行为洞察</span>
+        </div>
+        <div class="app-card">
+          <div class="icon">🎭</div>
+          <h4>社恐等级</h4>
+          <p>社交场景+应对能力</p>
+          <span class="tag">情绪共鸣</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 示例：工作性价比 -->
+    <div class="section">
+      <div class="section-title">📱 示例：工作性价比计算器</div>
+      <p style="margin-bottom: 15px; opacity: 0.8;">输入真实数据，计算你的工作性价比得分</p>
+      
+      <div class="calculator-demo">
+        <div class="calc-row">
+          <div class="calc-item">
+            <label>月薪（元）</label>
+            <input type="number" value="15000" readonly>
+          </div>
+          <div class="calc-item">
+            <label>每日工作时长</label>
+            <input type="number" value="9" readonly>
+          </div>
+          <div class="calc-item">
+            <label>通勤时长（分钟）</label>
+            <input type="number" value="45" readonly>
+          </div>
+        </div>
+        <div class="calc-row">
+          <div class="calc-item">
+            <label>每日摸鱼时长</label>
+            <input type="number" value="2" readonly>
+          </div>
+          <div class="calc-item">
+            <label>每月工作天数</label>
+            <input type="number" value="22" readonly>
+          </div>
+          <div class="calc-item">
+            <label>学历</label>
+            <select disabled><option>本科</option></select>
+          </div>
+        </div>
+        
+        <div class="result-demo">
+          <div class="score">78</div>
+          <div class="label">分 · 工作性价比 B+</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 视频流程 -->
+    <div class="section">
+      <div class="section-title">🎬 视频流程（2分钟）</div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="num">1</div>
+          <h4>开场Hook</h4>
+          <p>"你的工作值几分？"</p>
+        </div>
+        <div class="flow-step">
+          <div class="num">2</div>
+          <h4>输入演示</h4>
+          <p>输入一组数据</p>
+        </div>
+        <div class="flow-step">
+          <div class="num">3</div>
+          <h4>结果展示</h4>
+          <p>公布分数+等级</p>
+        </div>
+        <div class="flow-step">
+          <div class="num">4</div>
+          <h4>引导</h4>
+          <p>"你也来算算？"</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 优势 -->
+    <div class="section">
+      <div class="section-title">⚖️ 优势 vs 注意事项</div>
+      <div class="pros-cons">
+        <div class="box pros">
+          <h3>✅ 优势</h3>
+          <ul>
+            <li>用户输入真实数据，参与感强</li>
+            <li>结果可PK，引发社交传播</li>
+            <li>制作模板化，换题即可</li>
+            <li>可系列化，15+款不重样</li>
+            <li>适合评论区互动</li>
+          </ul>
+        </div>
+        <div class="box cons">
+          <h3>⚠️ 注意</h3>
+          <ul>
+            <li>公式要合理，不能太离谱</li>
+            <li>UI要好看，参考但不抄袭</li>
+            <li>移动端要兼容</li>
+            <li>首批3款建议和工作相关</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 待确认 -->
+    <div class="section">
+      <div class="section-title">❓ 需要确认</div>
+      <div class="questions">
+        <div class="q">
+          <h4>1. 首批做哪3款？</h4>
+          <p>建议：工作性价比 + 舔狗指数 + 熬夜健康度</p>
+        </div>
+        <div class="q">
+          <h4>2. UI风格？</h4>
+          <p>暗黑科技风？清新极简风？彩色撞色风？</p>
+        </div>
+        <div class="q">
+          <h4>3. 评分等级？</h4>
+          <p>0-100分 + S/A/B/C/D 级？</p>
+        </div>
+        <div class="q">
+          <h4>4. 加不加分享功能？</h4>
+          <p>生成图片保存朋友圈？</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>🦉 Bobby · 2026-03-06</p>
+    </div>
+    
+  </div>
+</body>
+</html>

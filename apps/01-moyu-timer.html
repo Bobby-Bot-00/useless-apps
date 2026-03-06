@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>摸鱼吗？</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      background: #0a0a0a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #fff;
+    }
+    .container {
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    .logo {
+      font-size: 80px;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 5px;
+      letter-spacing: 4px;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 14px;
+    }
+    
+    .status-box {
+      background: #1a1a1a;
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 2px solid #333;
+    }
+    .status-text {
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .status-text.work { color: #ff4757; }
+    .status-text.rest { color: #2ed573; }
+    .status-text.idle { color: #666; }
+    
+    .timer {
+      font-size: 72px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+    .timer.work { color: #ff4757; }
+    .timer.rest { color: #2ed573; }
+    
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 15px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+    .btn:active { transform: scale(0.95); }
+    .btn-start {
+      background: #ff4757;
+      color: #fff;
+    }
+    .btn-pause {
+      background: #333;
+      color: #fff;
+    }
+    .btn-reset {
+      background: #222;
+      color: #666;
+    }
+    
+    .settings {
+      margin-top: 30px;
+      padding: 20px;
+      background: #111;
+      border-radius: 15px;
+    }
+    .settings-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0;
+      color: #888;
+    }
+    .settings input {
+      width: 60px;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      font-size: 16px;
+    }
+    
+    .warning {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 71, 87, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 1000;
+    }
+    .warning.show { display: flex; }
+    .warning-text {
+      font-size: 48px;
+      font-weight: bold;
+      animation: pulse 0.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    .warning-sub {
+      font-size: 20px;
+      margin-top: 20px;
+      opacity: 0.8;
+    }
+    
+    .boss-warnings {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff4757;
+      color: #fff;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 18px;
+      display: none;
+      z-index: 999;
+      animation: slideDown 0.3s ease-out;
+    }
+    .boss-warnings.show { display: block; }
+    @keyframes slideDown {
+      from { transform: translateX(-50%) translateY(-100%); }
+      to { transform: translateX(-50%) translateY(0); }
+    }
+    
+    .stats {
+      margin-top: 30px;
+      padding: 20px;
+      background: #111;
+      border-radius: 15px;
+    }
+    .stats-title {
+      color: #666;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .stats-num {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2ed573;
+    }
+    
+    .tips {
+      margin-top: 20px;
+      color: #444;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">🐟</div>
+    <h1>摸鱼吗？</h1>
+    <p class="subtitle">上班不摸鱼，和咸鱼有什么区别</p>
+    
+    <div class="status-box">
+      <div class="status-text idle" id="statusText">等待开始</div>
+      <div class="timer idle" id="timer">55:00</div>
+      
+      <div class="btn-group">
+        <button class="btn btn-start" id="startBtn">开始摸鱼</button>
+        <button class="btn btn-pause" id="pauseBtn" style="display:none;">暂停</button>
+        <button class="btn btn-reset" id="resetBtn">重置</button>
+      </div>
+    </div>
+    
+    <div class="settings">
+      <div class="settings-row">
+        <span>工作时间（分钟）</span>
+        <input type="number" id="workMin" value="55">
+      </div>
+      <div class="settings-row">
+        <span>摸鱼时间（分钟）</span>
+        <input type="number" id="restMin" value="5">
+      </div>
+    </div>
+    
+    <div class="stats">
+      <div class="stats-title">今日累计摸鱼</div>
+      <div class="stats-num" id="totalRest">0 分钟</div>
+    </div>
+    
+    <p class="tips">💡 设置好时间，点击开始，然后安心工作吧</p>
+  </div>
+  
+  <!-- 警告弹窗 -->
+  <div class="warning" id="warning">
+    <div class="warning-text" id="warningText">⚠️ 老板来了！</div>
+    <div class="warning-sub" id="warningSub">快假装工作！</div>
+  </div>
+  
+  <!-- 随机警告 -->
+  <div class="boss-warnings" id="bossWarning"></div>
+  
+  <script>
+    // 老板来了警告文案
+    const bossWarnings = [
+      "👀 老板在你背后！",
+      "🚶 有人靠近工位！",
+      "📱 手机放下！有人在看！",
+      "👁️ 感觉有人在注视你",
+      "💻 屏幕切换！有人来了！"
+    ];
+    
+    // 状态
+    let workTime = 55 * 60;
+    let restTime = 5 * 60;
+    let currentTime = workTime;
+    let isWorking = true;
+    let isRunning = false;
+    let timerInterval = null;
+    let warningInterval = null;
+    let totalRestMinutes = 0;
+    
+    // DOM
+    const timerEl = document.getElementById('timer');
+    const statusTextEl = document.getElementById('statusText');
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const warningEl = document.getElementById('warning');
+    const warningTextEl = document.getElementById('warningText');
+    const warningSubEl = document.getElementById('warningSub');
+    const bossWarningEl = document.getElementById('bossWarning');
+    const totalRestEl = document.getElementById('totalRest');
+    
+    // 格式化
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+    
+    // 更新界面
+    function updateUI() {
+      timerEl.textContent = formatTime(currentTime);
+      
+      if (isWorking) {
+        timerEl.className = 'timer work';
+        statusTextEl.className = 'status-text work';
+        statusTextEl.textContent = '工作中... 😰';
+      } else {
+        timerEl.className = 'timer rest';
+        statusTextEl.className = 'status-text rest';
+        statusTextEl.textContent = '摸鱼中... 😎';
+      }
+    }
+    
+    // 显示警告
+    function showWarning(text, sub) {
+      warningTextEl.textContent = text;
+      warningSubEl.textContent = sub;
+      warningEl.classList.add('show');
+      
+      // 震动效果
+      if (navigator.vibrate) {
+        navigator.vibrate([200, 100, 200]);
+      }
+      
+      setTimeout(() => {
+        warningEl.classList.remove('show');
+      }, 3000);
+    }
+    
+    // 随机老板警告
+    function randomBossWarning() {
+      if (!isRunning || !isWorking) return;
+      
+      const text = bossWarnings[Math.floor(Math.random() * bossWarnings.length)];
+      bossWarningEl.textContent = text;
+      bossWarningEl.classList.add('show');
+      
+      setTimeout(() => {
+        bossWarningEl.classList.remove('show');
+      }, 2000);
+    }
+    
+    // 开始
+    function start() {
+      if (isRunning) return;
+      
+      // 读取设置
+      workTime = (parseInt(document.getElementById('workMin').value) || 55) * 60;
+      restTime = (parseInt(document.getElementById('restMin').value) || 5) * 60;
+      
+      if (!isWorking) {
+        currentTime = restTime;
+      } else if (currentTime === workTime) {
+        currentTime = workTime;
+      }
+      
+      isRunning = true;
+      startBtn.style.display = 'none';
+      pauseBtn.style.display = 'inline-block';
+      
+      // 启动计时器
+      timerInterval = setInterval(() => {
+        currentTime--;
+        
+        if (currentTime <= 0) {
+          if (isWorking) {
+            // 工作结束
+            isWorking = false;
+            currentTime = restTime;
+            totalRestMinutes += parseInt(document.getElementById('restMin').value) || 5;
+            totalRestEl.textContent = totalRestMinutes + ' 分钟';
+            showWarning('🎉 工作完成！', '去摸鱼吧！');
+          } else {
+            // 摸鱼结束
+            isWorking = true;
+            currentTime = workTime;
+            showWarning('🔔 摸鱼结束！', '开始工作吧！');
+          }
+        }
+        
+        updateUI();
+      }, 1000);
+      
+      // 随机警告（工作期间每30-60秒可能触发）
+      warningInterval = setInterval(() => {
+        if (Math.random() < 0.3) { // 30%概率
+          randomBossWarning();
+        }
+      }, 30000);
+      
+      updateUI();
+    }
+    
+    // 暂停
+    function pause() {
+      if (!isRunning) return;
+      
+      clearInterval(timerInterval);
+      clearInterval(warningInterval);
+      isRunning = false;
+      
+      startBtn.style.display = 'inline-block';
+      startBtn.textContent = '继续';
+      pauseBtn.style.display = 'none';
+    }
+    
+    // 重置
+    function reset() {
+      clearInterval(timerInterval);
+      clearInterval(warningInterval);
+      isRunning = false;
+      isWorking = true;
+      currentTime = workTime;
+      
+      workTime = (parseInt(document.getElementById('workMin').value) || 55) * 60;
+      restTime = (parseInt(document.getElementById('restMin').value) || 5) * 60;
+      currentTime = workTime;
+      
+      startBtn.style.display = 'inline-block';
+      startBtn.textContent = '开始摸鱼';
+      pauseBtn.style.display = 'none';
+      
+      timerEl.className = 'timer idle';
+      statusTextEl.className = 'status-text idle';
+      statusTextEl.textContent = '等待开始';
+      
+      updateUI();
+    }
+    
+    // 绑定事件
+    startBtn.addEventListener('click', start);
+    pauseBtn.addEventListener('click', pause);
+    resetBtn.addEventListener('click', reset);
+    
+    // 初始化
+    workTime = (parseInt(document.getElementById('workMin').value) || 55) * 60;
+    currentTime = workTime;
+    updateUI();
+  </script>
+</body>
+</html>
