@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>脱单难度评估</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      background: linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #6a0572 100%);
+      min-height: 100vh;
+      color: #fff;
+      padding: 20px;
+    }
+    .container { max-width: 500px; margin: 0 auto; }
+    
+    .header { text-align: center; margin-bottom: 20px; }
+    .header .icon { font-size: 50px; }
+    .header h1 { font-size: 22px; margin: 5px 0; }
+    .header p { font-size: 12px; opacity: 0.8; }
+    
+    .progress { display: flex; gap: 6px; margin-bottom: 20px; justify-content: center; }
+    .progress-dot { width: 25px; height: 5px; background: rgba(255,255,255,0.3); border-radius: 3px; }
+    
+    input[type="radio"] { display: none; position: absolute; }
+    
+    /* 隐藏所有卡片 */
+    .q-card { display: none; }
+    
+    /* 用CSS显示对应题目 */
+    #q1:checked ~ .container #q1-card,
+    #q2:checked ~ .container #q2-card,
+    #q3:checked ~ .container #q3-card,
+    #q4:checked ~ .container #q4-card,
+    #q5:checked ~ .container #q5-card,
+    #q6:checked ~ .container #q6-card,
+    #result:checked ~ .container #result-card { display: block; }
+    
+    /* 进度条 */
+    #q1:checked ~ .container .progress .dot1,
+    #q2:checked ~ .container .progress .dot1,
+    #q2:checked ~ .container .progress .dot2,
+    #q3:checked ~ .container .progress .dot1,
+    #q3:checked ~ .container .progress .dot2,
+    #q3:checked ~ .container .progress .dot3,
+    #q4:checked ~ .container .progress .dot1,
+    #q4:checked ~ .container .progress .dot2,
+    #q4:checked ~ .container .progress .dot3,
+    #q4:checked ~ .container .progress .dot4,
+    #q5:checked ~ .container .progress .dot1,
+    #q5:checked ~ .container .progress .dot2,
+    #q5:checked ~ .container .progress .dot3,
+    #q5:checked ~ .container .progress .dot4,
+    #q5:checked ~ .container .progress .dot5,
+    #q6:checked ~ .container .progress .dot1,
+    #q6:checked ~ .container .progress .dot2,
+    #q6:checked ~ .container .progress .dot3,
+    #q6:checked ~ .container .progress .dot4,
+    #q6:checked ~ .container .progress .dot5,
+    #q6:checked ~ .container .progress .dot6,
+    #result:checked ~ .container .progress .dot1,
+    #result:checked ~ .container .progress .dot2,
+    #result:checked ~ .container .progress .dot3,
+    #result:checked ~ .container .progress .dot4,
+    #result:checked ~ .container .progress .dot5,
+    #result:checked ~ .container .progress .dot6 { background: #ffd700; }
+    
+    #q1:checked ~ .container .progress .dot1,
+    #q2:checked ~ .container .progress .dot2,
+    #q3:checked ~ .container .progress .dot3,
+    #q4:checked ~ .container .progress .dot4,
+    #q5:checked ~ .container .progress .dot5,
+    #q6:checked ~ .container .progress .dot6 { background: #fff; }
+    
+    .q-card { background: rgba(255,255,255,0.15); border-radius: 16px; padding: 18px; margin-bottom: 15px; }
+    .q-card h2 { font-size: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .q-card .num { background: #ffd700; color: #c44569; width: 22px; height: 22px; border-radius: 50%; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+    
+    .opt {
+      display: block;
+      background: rgba(255,255,255,0.1);
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      color: #fff;
+    }
+    .opt:hover { background: rgba(255,255,255,0.2); }
+    .opt span { display: inline-block; width: 20px; height: 20px; background: rgba(255,255,255,0.2); border-radius: 50%; text-align: center; line-height: 20px; font-size: 11px; margin-right: 8px; }
+    
+    #result-card { text-align: center; }
+    .circle { width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #ff6b6b); margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+    .circle .sc { font-size: 42px; font-weight: bold; }
+    .circle .lb { font-size: 12px; opacity: 0.9; }
+    #result-card .grade { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
+    #result-card .tt { font-size: 16px; margin-bottom: 8px; }
+    #result-card .dc { font-size: 12px; opacity: 0.8; margin-bottom: 15px; line-height: 1.5; }
+    #result-card .tp { background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px; font-size: 11px; line-height: 1.5; }
+    #result-card .tp strong { color: #ffd700; }
+  </style>
+</head>
+<body>
+  <!-- radio放body下，用~选择器 -->
+  <input type="radio" name="q" id="q1" checked>
+  <input type="radio" name="q" id="q2">
+  <input type="radio" name="q" id="q3">
+  <input type="radio" name="q" id="q4">
+  <input type="radio" name="q" id="q5">
+  <input type="radio" name="q" id="q6">
+  <input type="radio" name="q" id="result">
+  
+  <div class="container">
+    <div class="header">
+      <div class="icon">👫</div>
+      <h1>脱单难度评估</h1>
+      <p>测测你脱单有多难</p>
+    </div>
+    
+    <div class="progress">
+      <div class="progress-dot dot1"></div>
+      <div class="progress-dot dot2"></div>
+      <div class="progress-dot dot3"></div>
+      <div class="progress-dot dot4"></div>
+      <div class="progress-dot dot5"></div>
+      <div class="progress-dot dot6"></div>
+    </div>
+    
+    <div class="q-card" id="q1-card">
+      <h2><span class="num">1</span>你的年龄是？</h2>
+      <label class="opt" for="q2"><span>A</span>20岁以下</label>
+      <label class="opt" for="q2"><span>B</span>20-25岁</label>
+      <label class="opt" for="q2"><span>C</span>26-30岁</label>
+      <label class="opt" for="q2"><span>D</span>31-35岁</label>
+      <label class="opt" for="q2"><span>E</span>35岁以上</label>
+    </div>
+    
+    <div class="q-card" id="q2-card">
+      <h2><span class="num">2</span>你的社交圈异性多吗？</h2>
+      <label class="opt" for="q3"><span>A</span>多到爆，异性缘超好</label>
+      <label class="opt" for="q3"><span>B</span>还行，个别异性朋友</label>
+      <label class="opt" for="q3"><span>C</span>少得可怜</label>
+      <label class="opt" for="q3"><span>D</span>几乎没有</label>
+    </div>
+    
+    <div class="q-card" id="q3-card">
+      <h2><span class="num">3</span>遇到喜欢的人你会？</h2>
+      <label class="opt" for="q4"><span>A</span>直接出击，主动搭讪</label>
+      <label class="opt" for="q4"><span>B</span>暗中观察，找机会接近</label>
+      <label class="opt" for="q4"><span>C</span>犹豫再三，最后放弃</label>
+      <label class="opt" for="q4"><span>D</span>永远等待缘分</label>
+    </div>
+    
+    <div class="q-card" id="q4-card">
+      <h2><span class="num">4</span>你的外在条件自我评价？</h2>
+      <label class="opt" for="q5"><span>A</span>走在路上有人搭讪</label>
+      <label class="opt" for="q5"><span>B</span>中等偏上，收拾一下还行</label>
+      <label class="opt" for="q5"><span>C</span>普通路人脸</label>
+      <label class="opt" for="q5"><span>D</span>只能靠内在和才华了</label>
+    </div>
+    
+    <div class="q-card" id="q5-card">
+      <h2><span class="num">5</span>你有多少个异性朋友？</h2>
+      <label class="opt" for="q6"><span>A</span>10个以上</label>
+      <label class="opt" for="q6"><span>B</span>5-10个</label>
+      <label class="opt" for="q6"><span>C</span>1-5个</label>
+      <label class="opt" for="q6"><span>D</span>0个（悲）</label>
+    </div>
+    
+    <div class="q-card" id="q6-card">
+      <h2><span class="num">6</span>你会主动参加社交活动吗？</h2>
+      <label class="opt" for="result"><span>A</span>各种局都参加</label>
+      <label class="opt" for="result"><span>B</span>偶尔参加</label>
+      <label class="opt" for="result"><span>C</span>有人叫才去</label>
+      <label class="opt" for="result"><span>D</span>死宅家中</label>
+    </div>
+    
+    <div class="q-card" id="result-card">
+      <div class="circle">
+        <div class="sc">50</div>
+        <div class="lb">分</div>
+      </div>
+      <div class="grade">B</div>
+      <div class="tt">普通玩家 🎮</div>
+      <div class="dc">脱单难度中等，需要一点点努力和运气~</div>
+      <div class="tp"><strong>建议：</strong>提升一下穿搭，偶尔主动邀约！</div>
+    </div>
+  </div>
+</body>
+</html>
